@@ -16,9 +16,9 @@ jobs:
       - name: Rsync Deploy
         uses: burnett01/rsync-deployments@4.1
         with:
-          switches: '--delete --exclude=.env'
+          switches: '--recursive --delete --exclude=.env'
           path: .
           remote_path: /phoenix-storage/srv/introcee/testdeploy
           remote_host: svcover.nl
           remote_user: introcee
-          private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
