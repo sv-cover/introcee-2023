@@ -147,7 +147,7 @@
                                 <p>
                                     <b>Friday:</b> Travel, settle in the rooms, games, surprise activity, dinner party.
                                     <br />
-                                    <b>Saturday:</b> Full day of games (P.S. all we're gonna is that you will need some clothes you don’t mind getting dirty), lunch, committee games, surprise activity, dinner, surprise activity with a <b>military</b> theme, party.
+                                    <b>Saturday:</b> Full day of games (P.S. all you're gonna need is some clothes you don’t mind getting dirty), lunch, committee games, surprise activity, dinner, surprise activity with a <b>military</b> theme, party.
                                     <br />
                                     <b>Sunday:</b> Breakfast, games, auction, travel back to Groningen.
                                 </p>
