@@ -8,7 +8,7 @@
                 <div class="content-box">
                     <div class="shape" style="background-image: url({{ asset('images/shape/shape-2.png') }});"></div>
                     <span>September 4-10, 2023</span>
-                    <h2>The Kick-Off Week of Your Student Life</h2>
+                    <h2>The Week of Your Student Life</h2>
                     <div class="btn-box">
                         <a href="#activities" class="theme-btn btn-one">Scroll Down</a>
                     </div>
