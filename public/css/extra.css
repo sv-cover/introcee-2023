@@ -1,0 +1,378 @@
+.main-header .menu-right-content .cart-box{
+    height: 47px;
+    line-height: 30px;
+    display: flex;
+    cursor: pointer;
+    transition: 0.3s ease all;
+}
+
+.main-header .menu-right-content .cart-box:hover{
+    color: black;
+}
+
+.main-header .menu-right-content .cart-box i{
+    margin-right: 10px;
+}
+
+.logo img{
+    height: 50px;
+}
+
+.footer-logo img{
+    height: 70px;
+    filter: brightness(100);
+}
+
+.banner-section .banner-carousel .owl-nav{
+    display: none;
+}
+
+select, input[type="date"], input[type="number"], input[type="text"], input[type="email"], input[type="password"], textarea{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 70px;
+    background: #f6f3f2;
+    border: 1px solid #f6f3f2;
+    font-size: 14px;
+    padding: 10px 30px;
+    font-size: 14px;
+    color: rgba(0,0,0,0.7) !important;
+    transition: all 500ms ease;
+}
+
+input::placeholder, textarea::placeholder{
+    color: rgba(0,0,0,0.3) !important;
+}
+
+input[name='form-type']{
+    display: none;
+}
+
+.switch-link{
+    background: rgba(0,0,0,0.06) !important;
+    color: rgba(0,0,0,0.5) !important;
+}
+
+.switch-link:before{
+    background: rgba(0,0,0,0.15) !important;
+}
+
+.switch-link.active{
+    background: #FE6F28 !important;
+    color: #fff !important;
+}
+
+.form-type-radio{
+    text-align: center;
+}
+
+.contact-section .default-form .form-group textarea{
+    height: 150px;
+}
+
+.payment-box{
+    border-radius: 15px;
+    box-shadow: 10px 10px 40px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.payment-box .inner{
+    padding: 40px;
+}
+
+.payment-box h4{
+    font-weight: bold;
+}
+
+.payment-section{
+    margin: 100px 0;
+}
+
+input[name="payment_method"]{
+    display: none;
+}
+
+.payment-method-box{
+    display: block;
+    width: 100%;
+    background: rgba(0,0,0,0.05);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 20px;
+}
+
+.payment-method-box{
+    display: flex;
+    align-content: center;
+    position: relative;
+    border: 2px solid white;
+    transition: 0.3s ease all;
+}
+
+.payment-method-box:before{
+    width: 25px;
+    height: 25px;
+    content: '';
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.05);
+    transform: translateY(-50%);
+}
+
+.payment-method-box:after{
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: #FE6F28;
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    border-radius: 3px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: 0.3s ease all;
+}
+
+input:checked + .payment-method-box:after{
+    opacity: 1;
+}
+
+input:checked + .payment-method-box{
+    border-color: #FE6F28;
+}
+
+.payment-method-text{
+    text-align: left;
+    margin-left: 20px;
+}
+
+.payment-method-image{
+    display: flex;
+    align-items: center;
+}
+
+.payment-method-image img {
+    width: 40px;
+    height: auto;
+}
+
+.payment-method-text p{
+    margin: 0;
+    line-height: 20px;
+    font-size: 13px;
+}
+
+.pay-button{
+    width: 100%;
+    background: #FE6F28;
+    color: #fff;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+input[type="checkbox"] + label{
+    display: flex;
+    line-height: 25px;
+}
+
+input[type="checkbox"] + label:not(:last-child){
+    margin-bottom: 15px;
+}
+
+input[type="checkbox"] + label:before{
+    width: 25px;
+    height: 25px;
+    content: '✔';
+    background: #F5F3F2;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center;
+    transition: 0.3s ease all;
+    color: transparent;
+}
+
+input[type="checkbox"]:checked + label:before{
+    color: rgba(0,0,0,0.6);
+}
+
+.contact-section .sec-title{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.wallet{
+    margin: 100px 0;
+}
+
+.wallet-header{
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.05);
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.wallet-info{
+    display: flex;
+    align-items: center;
+}
+
+.initials-picture{
+    background: #C8102E;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 100px;
+    font-size: 35px;
+    margin-right: 20px;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.wallet-info{
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.wallet-info span{
+    font-weight: bold;
+}
+
+.btn-topup{
+    display: block;
+    background: #ff6f29;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.btn-topup:hover{
+    background: #c64100;
+    color: white;
+}
+
+.wallet-funds span{
+    display: block;
+    font-size: 30px;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.wallet-funds span b{
+    font-weight: bold;
+}
+
+.qr-code{
+    width: 100px;
+}
+
+@media(max-width: 767px){
+    .wallet-funds{
+        margin-top: 40px;
+        text-align: left !important;
+    }
+
+    .wallet-funds span{
+        margin-bottom: 15px;
+    }
+
+    .wallet-funds div:first-child{
+        order: 2;
+    }
+
+    .wallet-funds .text-right{
+        order: 1;
+    }
+}
+
+.white-box{
+    padding: 30px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 10px 10px 40px rgba(0,0,0,0.1);
+}
+
+.white-box h4{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: #FE6F28;
+    margin-bottom: 15px;
+}
+
+ul.purchase-list li{
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+
+ul.purchase-list li .amount{
+    font-size: 20px;
+}
+
+ul.purchase-list li .details span{
+    display: block;
+    color: #999;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.wallet-notification{
+    background: #efedfc;
+    border-radius: 5px;
+    padding: 30px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 22px;
+    display: flex;
+}
+
+.wallet-notification i{
+    font-size: 40px;
+    color: #6f689c;
+    margin-right: 20px;
+}
+
+.cart-box a {
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 24px;
+}
+
+.cart-box a i{
+    font-size: 24px;
+}
+
+.icon-box{
+    line-height: 95px !important;
+    width: 130px !important;
+}
+
+.icon-box .icon-image{
+    transition: 0.3s ease all;
+}
+
+.icon-box:hover .icon-image{
+    filter: brightness(100);
+}
