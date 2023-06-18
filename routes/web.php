@@ -6,6 +6,7 @@
     use \App\Http\Controllers\BarbecueController;
     use \App\Http\Controllers\WalletController;
     use \App\Http\Controllers\EmailController;
+    use \App\Http\Middleware\CanAccessBackoffice;
 
     /*
     |--------------------------------------------------------------------------
@@ -51,4 +52,7 @@
     Route::get('/email', function() {
         return view('emails.standard');
     })->name('email');
-    Route::get('/sendmail', [EmailController::class, 'sendTestMail']);
+
+    Route::get('/admin', function(){
+        return view('backoffice.layout');
+    })->name('admin')->middleware(CanAccessBackoffice::class);

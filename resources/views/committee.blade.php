@@ -1,5 +1,5 @@
 @extends('base.layout')
-@section('title', 'Committee')
+@section('title', 'The Committee')
 @section('subtitle', 'IntroCee')
 @section('title_image', asset('images/camp-group-dark.jpg'))
 

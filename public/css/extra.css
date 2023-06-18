@@ -376,3 +376,13 @@ ul.purchase-list li .details span{
 .icon-box:hover .icon-image{
     filter: brightness(100);
 }
+
+.backoffice-button{
+    padding: 10px 25px;
+    position: fixed;
+    left: 15px;
+    bottom: 15px;
+    color: #0e2a47;
+    z-index: 1000;
+    font-weight: 500;
+}
