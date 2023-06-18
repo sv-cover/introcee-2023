@@ -97,10 +97,10 @@
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 inner-column">
                     <div class="content_block_two" style="height: calc(100% - 25px);">
-                        <div class="content-box" style="height: 100%;align-items: center;display: flex; justify-content: center;">
+                        <div class="content-box" style="height: 100%;align-items: center;display: flex; justify-content: center;background-image:url({{ asset('images/camp-group-dark.jpg') }});background-size: cover;  background-position: center;">
                             <div class="upper">
-                                <span>Introductory Camp</span>
-                                <p>September 8 - 10, 2023<br />@ Stadskanaal</p>
+                                <h3 style="font-weight: 800; color: white;font-size:36px;margin-bottom: 10px;">Introductory Camp</h3>
+                                <p>September 8 - 10, 2023<br />@ Pagedal, Stadskanaal</p>
                                 <a href="{{ route('camp') }}" class="theme-btn btn-one">Register now</a>
                             </div>
                         </div>
