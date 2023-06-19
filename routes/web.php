@@ -54,10 +54,10 @@ Route::get('/email', function() {
     return view('emails.standard');
 })->name('email');
 
-Route::prefix('admin')->group(function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'can.access.backoffice'], function () {
     Route::get('/', [BackofficeController::class, 'index'])->name('admin');
     Route::get('/camp', [BackofficeController::class, 'camp'])->name('backoffice.camp');
     Route::get('/bbq', [BackofficeController::class, 'bbq'])->name('backoffice.bbq');
     Route::get('/camp/participant', [BackofficeController::class, 'camp_participant'])->name('backoffice.camp.participant');
     Route::get('/bbq/participant', [BackofficeController::class, 'bbq_participant'])->name('backoffice.bbq.participant');
-})->middleware('can.access.backoffice');
+});
