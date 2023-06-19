@@ -165,7 +165,7 @@ License: For each use you must have a valid license purchased only from above li
                              data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
                              data-kt-menu-placement="bottom-end">
                             <img
-                                src="http://svcover.nl/profile/{{ $coverApi->get_cover_session()->id }}/picture/square/124"
+                                src="https://svcover.nl/profile/{{ $coverApi->get_cover_session()->id }}/picture/square/124"
                                 alt="user"/>
                             <div
                                 class="position-absolute rounded-circle bg-success start-100 top-100 h-8px w-8px ms-n3 mt-n3"></div>
@@ -180,7 +180,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-50px me-5">
                                         <img alt="Logo"
-                                             src="http://svcover.nl/profile/{{ $coverApi->get_cover_session()->id }}/picture/square/124"/>
+                                             src="https://svcover.nl/profile/{{ $coverApi->get_cover_session()->id }}/picture/square/124"/>
                                     </div>
                                     <!--end::Avatar-->
                                     <!--begin::Username-->
