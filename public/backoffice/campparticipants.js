@@ -6,6 +6,7 @@ var KTCustomersList = function () {
     var datatable;
     var filterMonth;
     var filterPayment;
+    var filterConfirmed;
     var table
 
     // Private functions
@@ -25,7 +26,7 @@ var KTCustomersList = function () {
             'order': [],
             'columnDefs': [
                 // { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                // { orderable: false, targets: 5 }, // Disable ordering on column 6 (actions)
+                { orderable: false, targets: 6 }, // Disable ordering on column 6 (actions)
             ]
         });
 
@@ -51,6 +52,7 @@ var KTCustomersList = function () {
         // Select filter options
         // filterMonth = $('[data-kt-customer-table-filter="month"]');
         filterPayment = document.querySelectorAll('[data-kt-customer-table-filter="participant_type"] [name="participant_type"]');
+        filterConfirmed = document.querySelectorAll('[data-kt-customer-table-filter="participant_confirmed"] [name="participant_confirmed"]');
         const filterButton = document.querySelector('[data-kt-customer-table-filter="filter"]');
 
         // Filter datatable on submit
@@ -58,6 +60,7 @@ var KTCustomersList = function () {
             // Get filter values
             // const monthValue = filterMonth.val();
             let paymentValue = '';
+            let confirmedValue = '';
 
             // Get payment value
             filterPayment.forEach(r => {
@@ -71,9 +74,20 @@ var KTCustomersList = function () {
                 }
             });
 
+            filterConfirmed.forEach(r => {
+                if (r.checked) {
+                    confirmedValue = r.value;
+                }
+
+                // Reset payment value if "All" is selected
+                if (confirmedValue === 'all') {
+                    confirmedValue = '';
+                }
+            });
+
             // Build filter string from filter options
             // const filterString = monthValue + ' ' + paymentValue;
-            const filterString = paymentValue;
+            const filterString = confirmedValue + ' ' + paymentValue;
 
             // Filter datatable --- official docs reference: https://datatables.net/reference/api/search()
             datatable.search(filterString).draw();

@@ -244,7 +244,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>HeroCee</td>
+                                                <td>HEROCee</td>
                                                 <td>
                                                     @if($participant->herocee)
                                                         <span class="badge badge-light-success">Yes</span>
