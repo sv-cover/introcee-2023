@@ -210,6 +210,11 @@ License: For each use you must have a valid license purchased only from above li
                     <!--end::User menu-->
                 </div>
                 <!--end::Logo-->
+                <style>
+                    #kt_app_sidebar_nav::-webkit-scrollbar, #kt_app_sidebar_nav_wrapper::-webkit-scrollbar{
+                        display: none;
+                    }
+                </style>
                 <!--begin::Sidebar nav-->
                 <div class="flex-column-fluid px-4 px-lg-8 py-4" id="kt_app_sidebar_nav">
                     <!--begin::Nav wrapper-->
@@ -253,7 +258,7 @@ License: For each use you must have a valid license purchased only from above li
                             <!--begin::Stat-->
                             <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4">
                                 <!--begin::Date-->
-                                <span class="fs-6 text-gray-500 fw-bold">Barbecue Total</span>
+                                <span class="fs-6 text-gray-500 fw-bold">BBQ Total</span>
                                 <!--end::Date-->
                                 <!--begin::Label-->
                                 <div
@@ -266,7 +271,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Links-->
                         <div class="mb-6">
                             <!--begin::Title-->
-                            <h3 class="text-gray-800 fw-bold mb-8">Participants</h3>
+                            <h3 class="text-gray-800 fw-bold mb-8">Introductory Camp</h3>
                             <!--end::Title-->
                             <!--begin::Row-->
                             <div class="row row-cols-3" data-kt-buttons="true"
@@ -283,25 +288,7 @@ License: For each use you must have a valid license purchased only from above li
                                         </span>
                                         <!--end::Icon-->
                                         <!--begin::Label-->
-                                        <span class="fs-7 fw-bold">IntroCamp</span>
-                                        <!--end::Label-->
-                                    </a>
-                                    <!--end::Link-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col mb-4">
-                                    <!--begin::Link-->
-                                    <a href="{{ route('backoffice.barbecue') }}"
-                                       class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary {{ Route::is('backoffice.barbecue') && 'active' }} btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
-                                       data-kt-button="true">
-                                        <!--begin::Icon-->
-                                        <span class="mb-2">
-											<i class="las la-hamburger fs-1"></i>
-                                        </span>
-                                        <!--end::Icon-->
-                                        <!--begin::Label-->
-                                        <span class="fs-7 fw-bold">Barbecue</span>
+                                        <span class="fs-7 fw-bold">Participants</span>
                                         <!--end::Label-->
                                     </a>
                                     <!--end::Link-->
@@ -314,7 +301,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Links-->
                         <div class="mb-6">
                             <!--begin::Title-->
-                            <h3 class="text-gray-800 fw-bold mb-8">Bar & Wallets</h3>
+                            <h3 class="text-gray-800 fw-bold mb-8">Barbecue</h3>
                             <!--end::Title-->
                             <!--begin::Row-->
                             <div class="row row-cols-3" data-kt-buttons="true"
@@ -322,16 +309,16 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin::Col-->
                                 <div class="col mb-4">
                                     <!--begin::Link-->
-                                    <a href=".#"
-                                       class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
+                                    <a href="{{ route('backoffice.bbq') }}"
+                                       class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary {{ Route::is('backoffice.bbq') && 'active' }} btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
                                        data-kt-button="true">
                                         <!--begin::Icon-->
                                         <span class="mb-2">
-											<i class="ki-outline ki-calendar fs-1"></i>
+											<i class="las la-hamburger fs-1"></i>
                                         </span>
                                         <!--end::Icon-->
                                         <!--begin::Label-->
-                                        <span class="fs-7 fw-bold">Coming Soon</span>
+                                        <span class="fs-7 fw-bold">Participants</span>
                                         <!--end::Label-->
                                     </a>
                                     <!--end::Link-->

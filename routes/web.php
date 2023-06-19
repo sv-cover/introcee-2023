@@ -7,6 +7,7 @@ use \App\Http\Controllers\BarbecueController;
 use \App\Http\Controllers\WalletController;
 use \App\Http\Controllers\EmailController;
 use \App\Http\Middleware\CanAccessBackoffice;
+use \App\Http\Controllers\BackofficeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,13 +55,9 @@ Route::get('/email', function() {
 })->name('email');
 
 Route::prefix('admin')->group(function() {
-    Route::get('/', function() {
-        return view('backoffice.main');
-    })->name('admin');
-    Route::get('/camp', function() {
-        return view('backoffice.camp');
-    })->name('backoffice.camp');
-    Route::get('/bbq', function() {
-        return view('backoffice.barbecue');
-    })->name('backoffice.barbecue');
+    Route::get('/', [BackofficeController::class, 'index'])->name('admin');
+    Route::get('/camp', [BackofficeController::class, 'camp'])->name('backoffice.camp');
+    Route::get('/bbq', [BackofficeController::class, 'bbq'])->name('backoffice.bbq');
+    Route::get('/camp/participant', [BackofficeController::class, 'camp_participant'])->name('backoffice.camp.participant');
+    Route::get('/bbq/participant', [BackofficeController::class, 'bbq_participant'])->name('backoffice.bbq.participant');
 })->middleware(CanAccessBackoffice::class);

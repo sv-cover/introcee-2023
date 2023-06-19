@@ -102,6 +102,18 @@ class PaymentController extends Controller
         return redirect()->to($payment->getCheckoutUrl())->send();
     }
 
+    public static function getPaymentDetails($reference){
+        $mollie = new MollieApiClient();
+        $mollie->setApiKey(env('MOLLIE_API_KEY'));
+        return $mollie->payments->get($reference);
+    }
+
+    public static function getPaymentMethod($method){
+        $mollie = new MollieApiClient();
+        $mollie->setApiKey(env('MOLLIE_API_KEY'));
+        return $mollie->methods->get($method);
+    }
+
     public function process(){
         $mollie = new MollieApiClient();
         $mollie->setApiKey(env('MOLLIE_API_KEY'));

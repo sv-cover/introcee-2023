@@ -141,33 +141,38 @@
                                    id="kt_customers_table">
                                 <thead>
                                 <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_customers_table"
+                                    <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1"
                                         aria-label="Customer Name: activate to sort column ascending"
-                                        style="width: 139.07px;">Participant Name
+                                        >Participant Name
                                     </th>
-                                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_customers_table"
+                                    <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending"
-                                        style="width: 172.57px;">Email
+                                        >Email
                                     </th>
-                                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_customers_table"
+                                    <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1" aria-label="Company: activate to sort column ascending"
-                                        style="width: 153.086px;">Phone Number
+                                        >Phone Number
                                     </th>
-                                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_customers_table"
+                                    <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1"
                                         aria-label="Payment Method: activate to sort column ascending"
-                                        style="width: 139.07px;">Type
+                                        >Type
                                     </th>
-                                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_customers_table"
+                                    <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1"
                                         aria-label="Payment Method: activate to sort column ascending"
-                                        style="width: 139.07px;">Confirmed
+                                        >Confirmed
                                     </th>
-                                    <th class="min-w-125px sorting" tabindex="0" aria-controls="kt_customers_table"
+                                    <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1"
                                         aria-label="Created Date: activate to sort column ascending"
-                                        style="width: 181.219px;">Created Date
+                                        >Created Date
+                                    </th>
+                                    <th class="sorting text-right" tabindex="0" aria-controls="kt_customers_table"
+                                        rowspan="1" colspan="1"
+                                        aria-label="Created Date: activate to sort column ascending"
+                                    >View
                                     </th>
                                 </tr>
                                 </thead>
@@ -176,7 +181,10 @@
                                 @foreach(\App\Models\ParticipantBarbecue::all() as $participant)
                                     <tr class="{{ $i++ % 2 == 0 ? 'even' : 'odd' }}">
                                         <td>
-                                            <a class="text-gray-800 text-hover-primary mb-1">
+                                            <a
+                                                href="{{ route('backoffice.bbq.participant', ['id' => $participant->id]) }}"
+                                                class="text-gray-800 text-hover-primary mb-1"
+                                            >
                                                 {{ $participant->first_name }}
                                                 {{ ' ' }}
                                                 {{ $participant->last_name }}
@@ -203,6 +211,14 @@
                                             @endif
                                         </td>
                                         <td data-order="{{ $participant->created_at }}">{{ $participant->created_at }}</td>
+                                        <td>
+                                            <a
+                                                href="{{ route('backoffice.camp.participant', ['id' => $participant->id]) }}"
+                                                class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
+                                            >
+                                                <i class="ki-outline ki-eye fs-3"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
