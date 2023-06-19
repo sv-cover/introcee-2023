@@ -249,7 +249,7 @@
                                         <td data-order="{{ $participant->created_at }}">{{ $participant->created_at }}</td>
                                         <td>
                                             <a
-                                                href="{{ route('backoffice.camp.participant', ['id' => $participant->id]) }}"
+                                                href="{{ route('backoffice.bbq.participant', ['id' => $participant->id]) }}"
                                                 class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
                                             >
                                                 <i class="ki-outline ki-eye fs-3"></i>
