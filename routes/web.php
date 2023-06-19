@@ -60,4 +60,4 @@ Route::prefix('admin')->group(function() {
     Route::get('/bbq', [BackofficeController::class, 'bbq'])->name('backoffice.bbq');
     Route::get('/camp/participant', [BackofficeController::class, 'camp_participant'])->name('backoffice.camp.participant');
     Route::get('/bbq/participant', [BackofficeController::class, 'bbq_participant'])->name('backoffice.bbq.participant');
-})->middleware(CanAccessBackoffice::class);
+})->middleware('can.access.backoffice');
