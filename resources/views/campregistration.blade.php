@@ -18,6 +18,14 @@
                             </div>
                         </div>
                     </div>
+                @elseif(1 == 1)
+                    <div class="activities-section">
+                        <div class="lower-box justify-content-center">
+                            <div class="sec-title light mt-0 ">
+                                <span class="sub-title">The sign-ups are not open yet. Keep an eye on the website to find out when they will open!</span>
+                            </div>
+                        </div>
+                    </div>
                 @else
                     <div class="form-type-radio mt-n5 mb-5">
                         <a class="switch-link theme-btn btn-one {{ $type != 'senior' ? 'active' : '' }}"

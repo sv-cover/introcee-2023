@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Wallet extends Model
+
+
+class Product extends Model
 {
     use HasUuids;
 
-    protected $fillable = ['id', 'first_name', 'last_name', 'email', 'balance'];
+    protected $fillable = ['id', 'name', 'description', 'image', 'age_restriction', 'price'];
 
     protected $guarded = ['id'];
 
@@ -19,15 +21,10 @@ class Wallet extends Model
      *
      * @var string
      */
-    protected $table = 'wallets';
-
-    public function topUps(): HasMany
-    {
-        return $this->hasMany(TopUp::class, 'wallet');
-    }
+    protected $table = 'products';
 
     public function purchases(): HasMany
     {
-        return $this->hasMany(Purchase::class, 'wallet');
+        return $this->hasMany(Purchase::class, 'product');
     }
 }

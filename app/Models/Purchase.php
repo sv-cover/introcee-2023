@@ -2,25 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class TopUp extends Model
+class Purchase extends Model
 {
-    protected $fillable = ['id', 'wallet', 'amount', 'final_amount', 'payment_reference', 'confirmed'];
+    use HasUuids;
+
+    protected $fillable = ['id', 'product', 'wallet', 'undone', 'unit_price', 'quantity', 'total'];
 
     protected $guarded = ['id'];
 
     /**
-     * Get the wallet that owns the topup.
+     * Get the wallet that owns the purchase.
      */
     public function wallet(): BelongsTo
     {
         return $this->belongsTo(Wallet::class, 'wallet');
-    }
-
-    public function product(): BelongsTo
-    {
-        return $this->belongsTo(Product::class, 'product');
     }
 }
