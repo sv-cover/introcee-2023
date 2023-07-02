@@ -113,6 +113,13 @@
                                     <div class="fw-bold mt-5">Date of Birth</div>
                                     <div class="text-gray-600">
                                         {{ $participant->date_of_birth }}
+                                        @php($age = $participant->getAge())
+                                        <span class="badge badge-{{ $age < 18 ? 'danger' : 'light-dark' }}">
+                                            @if($age<18)
+                                                <i class="ki ki-outline ki-flag text-white me-1"></i>
+                                            @endif
+                                            {{ $age }} years old
+                                        </span>
                                     </div>
                                     <!--begin::Details item-->
                                     <!--begin::Details item-->
@@ -130,6 +137,25 @@
                                         ({{ $participant->study_year }})
                                     </div>
                                     <!--begin::Details item-->
+                                    <!--begin::Details item-->
+                                    <div class="fw-bold mt-5">Status</div>
+                                    <div class="text-gray-600">
+                                        @if($participant->confirmed)
+                                            <span class="badge badge-success">Confirmed</span>
+                                        @else
+                                            <span class="badge badge-danger">Not Confirmed</span>
+                                        @endif
+                                    </div>
+                                    <!--begin::Details item-->
+                                    @if($participant->senior && !$participant->confirmed)
+                                        <a href="#" class="btn btn-sm btn-light-primary btn-block mt-6"
+                                           data-bs-toggle="modal"
+                                           data-bs-target="#kt_modal_add_payment"
+                                           style="width: 100%;"
+                                        >
+                                            Confirm Participant
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                             <!--end::Details content-->
@@ -327,20 +353,24 @@
                                                 <tr>
                                                     <td>Participant Fee</td>
                                                     <td class="text-right">
-                                                        <span class="badge badge-light-primary">€ {{ $participant->fee }}</span>
+                                                        <span
+                                                            class="badge badge-light-primary">€ {{ $participant->fee }}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Commission</td>
                                                     <td class="text-right">
-                                                        <span class="badge badge-light-warning">€ {{ $participant->final_fee - $participant->fee }}</span>
+                                                        <span
+                                                            class="badge badge-light-warning">€ {{ $participant->final_fee - $participant->fee }}</span>
                                                     </td>
                                                 </tr>
                                                 @if(isset($card))
                                                     <tr>
                                                         <td><b>Card Type</b></td>
                                                         <td class="text-right">
-                                                            <img src="{{ asset('backoffice/media/svg/card-logos/'. $card->cardLabel .'.svg') }}" height="24" />
+                                                            <img
+                                                                src="{{ asset('backoffice/media/svg/card-logos/'. $card->cardLabel .'.svg') }}"
+                                                                height="24"/>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -361,7 +391,8 @@
                                                 <tr>
                                                     <td>Final Fee</td>
                                                     <td class="text-right">
-                                                        <span class="badge badge-light-info">€ {{ $participant->final_fee }}</span>
+                                                        <span
+                                                            class="badge badge-light-info">€ {{ $participant->final_fee }}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -380,7 +411,9 @@
                                                     <tr>
                                                         <td><b>Card Country</b></td>
                                                         <td class="text-right">
-                                                            <img src="https://flagsapi.com/{{ $card->cardCountryCode }}/flat/64.png" height="24">
+                                                            <img
+                                                                src="https://flagsapi.com/{{ $card->cardCountryCode }}/flat/64.png"
+                                                                height="24">
                                                         </td>
                                                     </tr>
                                                 @endif
@@ -397,6 +430,88 @@
                 <!--end::Content-->
             </div>
             <!--end::Layout-->
+            <div class="modal fade" id="kt_modal_add_payment" tabindex="-1" style="display: none;" aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog mw-650px">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Modal header-->
+                        <div class="modal-header">
+                            <!--begin::Modal title-->
+                            <h2 class="fw-bold">Confirm {{ $participant->first_name }}'s Registration</h2>
+                            <!--end::Modal title-->
+                            <!--begin::Close-->
+                            <div id="kt_modal_add_payment_close" class="btn btn-icon btn-sm btn-active-icon-primary"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#kt_modal_add_payment"
+                            >
+                                <i class="ki-outline ki-cross fs-1"></i>
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                            <!--begin::Form-->
+                            <form id="kt_modal_add_payment_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                                  action="#">
+                                <!--begin::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7 fv-plugins-icon-container">
+                                    <!--begin::Label-->
+                                    <label class="required fs-6 fw-semibold form-label mb-2">Participant Fee</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select class="form-select form-select-solid fw-bold select2-hidden-accessible"
+                                            name="status" data-control="select2" data-placeholder="Select an option"
+                                            data-hide-search="true" data-select2-id="select2-data-4-xvwc" tabindex="-1"
+                                            aria-hidden="true" data-kt-initialized="1">
+                                        <option data-select2-id="select2-data-6-ijzx"></option>
+                                        <option value="14.75">IntroCee (25% - €14.75)</option>
+                                        <option value="29.5">HEROCee (50% - €29.5)</option>
+                                        <option value="44.25">PhotoCee (77% - €44.25)</option>
+                                        <option value="59">Full (100% - €59)</option>
+                                        <option value="0">Mentor (0% - €0)</option>
+                                    </select><span class="select2 select2-container select2-container--bootstrap5"
+                                                   dir="ltr" data-select2-id="select2-data-5-m8jy" style="width: 100%;"><span
+                                            class="selection"><span
+                                                class="select2-selection select2-selection--single form-select form-select-solid fw-bold"
+                                                role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0"
+                                                aria-disabled="false" aria-labelledby="select2-status-7z-container"
+                                                aria-controls="select2-status-7z-container"><span
+                                                    class="select2-selection__rendered" id="select2-status-7z-container"
+                                                    role="textbox" aria-readonly="true" title="Select an option"><span
+                                                        class="select2-selection__placeholder">Select an option</span></span><span
+                                                    class="select2-selection__arrow" role="presentation"><b
+                                                        role="presentation"></b></span></span></span><span
+                                            class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                    <!--end::Input-->
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Actions-->
+                                <div class="text-center">
+                                    <button type="reset" id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
+                                        Discard
+                                    </button>
+                                    <button type="submit" id="kt_modal_add_payment_submit" class="btn btn-primary">
+                                        <span class="indicator-label">Submit</span>
+                                        <span class="indicator-progress">Please wait...
+																<span
+                                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </button>
+                                </div>
+                                <!--end::Actions-->
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Modal body-->
+                    </div>
+                    <!--end::Modal content-->
+                </div>
+                <!--end::Modal dialog-->
+            </div>
         </div>
         <!--end::Content container-->
     </div>

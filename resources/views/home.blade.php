@@ -68,7 +68,7 @@
                                 </div>
                                 <h3><a>Social Drinks</a></h3>
                                 <p>Wednesday, September 6, 2023<br /> 21:00 @ Location TBA</p>
-                                <div class="link"><a>Read More</a></div>
+                                <div class="link"><a href="https://svcover.nl/calendar?agenda_id=4145" target="_blank">Read More</a></div>
                             </div>
                         </div>
                     </div>

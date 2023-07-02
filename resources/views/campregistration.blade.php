@@ -18,7 +18,7 @@
                             </div>
                         </div>
                     </div>
-                @elseif(1 == 1)
+                @elseif(0 == 1)
                     <div class="activities-section">
                         <div class="lower-box justify-content-center">
                             <div class="sec-title light mt-0 ">

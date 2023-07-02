@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,5 +25,12 @@ class ParticipantCamp extends Model
      * @var string
      */
     protected $table = 'participants_camp';
+
+    public function getAge(){
+        $camp_start = new DateTime('2023-09-08');
+        $camp_end = new DateTime('2023-09-10');
+        $bday = new DateTime($this->date_of_birth);
+        return $camp_start->diff($bday)->y;
+    }
 
 }
