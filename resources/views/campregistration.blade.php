@@ -113,7 +113,7 @@
                                     <input type="checkbox" name="terms_and_conditions" id="terms_and_conditions"
                                            required
                                            checked/>
-                                    <label for="terms_and_conditions">I have read and greee to the&nbsp;<a href="#">terms
+                                    <label for="terms_and_conditions">I have read and greee to the&nbsp;<a href="https://filemanager.svcover.nl/uploads/introcee/terms-and-conditions-2023.pdf">terms
                                             and
                                             conditions</a>.</label>
                                 </div>
