@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('auth.apikey')->group(function () {
+    Route::get('/products', [ApiController::class, 'products']);
+    Route::post('/purchase', [ApiController::class, 'purchase']);
+    Route::post('/pin', [ApiController::class, 'pin']);
+    Route::get('/wallets', [ApiController::class, 'wallets']);
 });

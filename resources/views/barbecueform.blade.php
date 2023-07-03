@@ -156,10 +156,10 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 form-group">
-                                    <label>How many years have you been studying?</label>
+                                    <label>Study Year (at the BBQ)</label>
                                     <input type="number" min="1" max="10" name="study_year" required
                                            placeholder="Ex: 2"
-                                           value="{{ date("Y") - $member->beginjaar }}">
+                                           value="{{ (date("Y") - $member->beginjaar) + 1 }}">
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 form-group">
                                     <label>&nbsp;</label>

@@ -182,7 +182,7 @@ class PaymentController extends Controller
             'event_name' => PaymentController::$events[request()->event],
             'id' => request()->id,
             'paid' => $paid,
-            'walletid' => $paid ?? $wallet->id
+            'walletid' => $paid ? $wallet->id : 0
         ]);
     }
 }

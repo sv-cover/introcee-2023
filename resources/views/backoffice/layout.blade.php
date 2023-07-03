@@ -120,7 +120,7 @@ License: For each use you must have a valid license purchased only from above li
                                 <div
                                     class="btn btn-icon btn-circle btn-color-gray-500 btn-active-color-primary btn-custom shadow-xs bg-body"
                                     id="kt_drawer_chat_toggle">
-                                    <i class="ki-outline ki-screen fs-1"></i>
+                                    <i class="ki-outline ki-home fs-1"></i>
                                 </div>
                             </a>
                             <!--end::Menu wrapper-->
@@ -319,6 +319,36 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--end::Icon-->
                                         <!--begin::Label-->
                                         <span class="fs-7 fw-bold">Participants</span>
+                                        <!--end::Label-->
+                                    </a>
+                                    <!--end::Link-->
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Row-->
+                        </div>
+                        <!--end::Links-->
+                        <!--begin::Links-->
+                        <div class="mb-6">
+                            <!--begin::Title-->
+                            <h3 class="text-gray-800 fw-bold mb-8">POS</h3>
+                            <!--end::Title-->
+                            <!--begin::Row-->
+                            <div class="row row-cols-3" data-kt-buttons="true"
+                                 data-kt-buttons-target="[data-kt-button]">
+                                <!--begin::Col-->
+                                <div class="col mb-4">
+                                    <!--begin::Link-->
+                                    <a href="{{ route('backoffice.pos.products') }}"
+                                       class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary {{ Route::is('backoffice.pos.products') && 'active' }} btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
+                                       data-kt-button="true">
+                                        <!--begin::Icon-->
+                                        <span class="mb-2">
+											<i class="las la-shopping-cart fs-1"></i>
+                                        </span>
+                                        <!--end::Icon-->
+                                        <!--begin::Label-->
+                                        <span class="fs-7 fw-bold">Products</span>
                                         <!--end::Label-->
                                     </a>
                                     <!--end::Link-->
