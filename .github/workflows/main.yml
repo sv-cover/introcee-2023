@@ -18,7 +18,7 @@ jobs:
         with:
           switches: '--recursive --delete --exclude=.* --exclude=*/.* --exclude=vendor/ --exclude=.env'
           path: .
-          remote_path: /phoenix-storage/srv/introcee
+          remote_path: /phoenix-storage/srv/introcee/website
           remote_host: svcover.nl
           remote_user: introcee
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
