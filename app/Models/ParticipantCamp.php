@@ -27,10 +27,9 @@ class ParticipantCamp extends Model
     protected $table = 'participants_camp';
 
     public function getAge(){
-        $camp_start = new DateTime('2023-09-08');
-        $camp_end = new DateTime('2023-09-10');
+        $today = new DateTime();
         $bday = new DateTime($this->date_of_birth);
-        return $camp_start->diff($bday)->y;
+        return $today->diff($bday)->y;
     }
 
 }

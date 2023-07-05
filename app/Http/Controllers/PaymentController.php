@@ -142,7 +142,7 @@ class PaymentController extends Controller
                 $participant->paid_at = now();
                 $participant->final_fee = $payment->getSettlementAmount();
                 $participant->save();
-                WalletController::checkOrCreate($participant->email_address, $participant->first_name, $participant->last_name);
+                WalletController::checkOrCreate($participant->email_address, $participant->first_name, $participant->last_name, $participant->date_of_birth);
                 $wallet = Wallet::where('email', $participant->email_address)->first();
 
                 if(request()->event == 'camp'){

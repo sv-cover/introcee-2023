@@ -20,18 +20,18 @@
                             <h4 class="mb-3">Pay for {{ $event_name }}</h4>
                             <h5 class="mb-4">€ {{ $fee }}</h5>
                             <input type="radio" id="ideal" name="payment_method" value="ideal"
-                                   onchange="set_commission(0.29)" required/>
+                                   onchange="set_commission(0.35)" required/>
                             <label class="payment-method-box" for="ideal">
                                 <div class="payment-method-image">
                                     <img src="https://www.mollie.com/images/payscreen/methods/ideal.png" alt="iDeal"/>
                                 </div>
                                 <div class="payment-method-text">
                                     <h6>iDeal</h6>
-                                    <p>€{{ number_format(0.29, 2, ',') }}</p>
+                                    <p>€{{ number_format(0.35, 2, ',') }}</p>
                                 </div>
                             </label>
                             <input type="radio" id="creditcard" name="payment_method" value="creditcard"
-                                   onchange="set_commission(0.018 * <?=$fee?> + 0.25)"/>
+                                   onchange="set_commission({{ ceil((0.018 * $fee + 0.25) * 1.21/0.05)*0.05 }})"/>
                             <label class="payment-method-box" for="creditcard">
                                 <div class="payment-method-image">
                                     <img src="https://www.mollie.com/images/payscreen/methods/creditcard.png"
@@ -39,12 +39,11 @@
                                 </div>
                                 <div class="payment-method-text">
                                     <h6>Debit/Credit Card</h6>
-                                    <p>{{ number_format((0.018 * $fee + 0.25) * 100 / $fee, 2, ',') }}%
-                                        (€{{ number_format(0.018 * $fee + 0.25, 2, ',') }})</p>
+                                    <p>€{{ number_format(ceil((0.018 * $fee + 0.25) * 1.21/0.05)*0.05, 2, ',') }}</p>
                                 </div>
                             </label>
                             <input type="radio" id="bancontact" name="payment_method" value="bancontact"
-                                   onchange="set_commission(0.39)"/>
+                                   onchange="set_commission(0.47)"/>
                             <label class="payment-method-box" for="bancontact">
                                 <div class="payment-method-image">
                                     <img src="https://www.mollie.com/images/payscreen/methods/bancontact.png"
@@ -52,11 +51,11 @@
                                 </div>
                                 <div class="payment-method-text">
                                     <h6>Bancontact</h6>
-                                    <p>€{{ number_format(0.39, 2, ',') }}</p>
+                                    <p>€{{ number_format(0.47, 2, ',') }}</p>
                                 </div>
                             </label>
                             <input type="radio" id="sofort" name="payment_method" value="sofort"
-                                   onchange="set_commission(0.009 * <?=$fee?> + 0.25)"/>
+                                   onchange="set_commission({{ ceil((0.009 * $fee + 0.25) * 1.21/0.05)*0.05 }})"/>
                             <label class="payment-method-box" for="sofort">
                                 <div class="payment-method-image">
                                     <img src="https://www.mollie.com/external/icons/payment-methods/sofort.png"
@@ -64,12 +63,11 @@
                                 </div>
                                 <div class="payment-method-text">
                                     <h6>SOFORT Banking</h6>
-                                    <p>€{{ number_format((0.009 * $fee + 0.25) * 100 / $fee, 2, ',') }}%
-                                        (€{{ number_format(0.009 * $fee + 0.25, 2, ',') }})</p>
+                                    <p>€{{ number_format(ceil((0.009 * $fee + 0.25) * 1.21/0.05)*0.05, 2, ',') }}</p>
                                 </div>
                             </label>
                             <input type="radio" id="przelewy24" name="payment_method" value="przelewy24"
-                                   onchange="set_commission(0.022 * <?=$fee?> + 0.25)"/>
+                                   onchange="set_commission({{ ceil((0.022 * $fee + 0.25) * 1.21/0.05)*0.05 }})"/>
                             <label class="payment-method-box" for="przelewy24">
                                 <div class="payment-method-image">
                                     <img src="https://www.mollie.com/external/icons/payment-methods/przelewy24.png"
@@ -77,8 +75,7 @@
                                 </div>
                                 <div class="payment-method-text">
                                     <h6>Przelewy24</h6>
-                                    <p>€{{ number_format((0.022 * $fee + 0.25) * 100 / $fee, 2, ',') }}%
-                                        (€{{ number_format(0.022 * $fee + 0.25, 2, ',') }})</p>
+                                    <p>€{{ number_format(ceil((0.022 * $fee + 0.25) * 1.21/0.05)*0.05, 2, ',') }}</p>
                                 </div>
                             </label>
                         </div>

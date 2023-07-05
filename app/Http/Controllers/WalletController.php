@@ -55,13 +55,14 @@ class WalletController extends Controller
         return redirect('/');
     }
 
-    public static function checkOrCreate($email, $firstname, $lastname){
+    public static function checkOrCreate($email, $firstname, $lastname, $date_of_birth){
         $wallet = Wallet::where('email',$email)->first();
         if(!$wallet){
             $wallet = new Wallet([
                 'email' => $email,
                 'first_name' => $firstname,
-                'last_name' => $lastname
+                'last_name' => $lastname,
+                'date_of_birth' => $date_of_birth
             ]);
             $wallet->save();
         }

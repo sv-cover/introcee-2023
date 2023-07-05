@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Wallet;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ApiController extends Controller
 {
@@ -41,7 +43,6 @@ class ApiController extends Controller
         if(
             !isset(request()->products) ||
             count(request()->products) == 0 ||
-            !isset(request()->total) ||
             !isset(request()->wallet)
         ){
             return $this->errorResponse('Request not formatted properly.', 400);
@@ -51,37 +52,52 @@ class ApiController extends Controller
             return $this->errorResponse('Wallet not found.', 404);
         }
 
-        if(request()->total > $wallet->balance && !(request()->bypass_balance == true)){
-            return $this->errorResponse('Not enough funds in the wallet.', 402);
-        }
-
         $purchases = [];
         $total = 0;
 
-        foreach (request()->products as $pr){
-            if(!isset($pr['id']) || !isset($pr['quantity']) || $pr['quantity'] < 1){
-                return $this->errorResponse('Request not formatted properly.', 400);
+        $error = null;
+
+        collect(request()->products)->each(function($quantity, $pr) use (&$purchases, &$total, &$wallet, &$error){
+            if($quantity < 1){
+                $error = $this->errorResponse('Request not formatted properly.', 400);
+                return false;
             }
-            $product = Product::find($pr['id']);
-            if(!$product) return $this->errorResponse('Product not found.', 404);
+            $product = Product::find($pr);
+            if(!$product){
+                $error = $this->errorResponse('Product not found.', 404);
+                return false;
+            }
+            $today = new DateTime();
+            $bday = new DateTime($wallet->date_of_birth);
+            $ageInterval = $today->diff($bday);
+            $age = $ageInterval->y + ($ageInterval->m / 12) + ($ageInterval->d / 365.25);
+
+            if($product->age_restriction && $age < 18){
+                $error = $this->errorResponse('Participant is underage.', 403);
+                return false;
+            }
             $purchase = new Purchase();
             $purchase->wallet = $wallet->id;
             $purchase->product = $product->id;
             $purchase->price_per_unit = $product->price;
-            $purchase->quantity = $pr['quantity'];
-            $purchase->total = $pr['quantity'] * $product->price;
+            $purchase->quantity = $quantity;
+            $purchase->total = $quantity * $product->price;
             $purchases[] = $purchase;
             $total += $purchase->total;
+        });
+
+        if($error){
+            return $error;
         }
 
-        if($total !== request()->total){
-            return $this->errorResponse('Request not formatted properly.', 400);
+        if($total > $wallet->balance && !(request()->bypass_balance == true)){
+            return $this->errorResponse('Not enough funds in the wallet.', 402);
         }
 
         foreach ($purchases as $purchase){
             $purchase->save();
         }
-        $wallet->balance -= request()->total;
+        $wallet->balance -= $total;
         $wallet->save();
 
         return response('', 200);
