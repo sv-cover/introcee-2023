@@ -154,7 +154,7 @@ class PaymentController extends Controller
                 $mailbody = 'Dear ' . $participant->first_name . ',<br><br>
                 You are successfully signed up for Cover\'s ' . PaymentController::$events[request()->event] . '! You will receive more information about the event via your email. Please keep an eye on the <a href="https://introcee.svcover.nl/">IntroCee website</a> and <a href="https://instagram.com/svcover">Cover\'s Instagram</a> for updates and news about the events. <br><br>
                 Please note that during the Introductory Barbecue and Camp we will be using a wallet system, which you can top up digitally. Please visit the wallet page to read more information and consider topping up before the event. <br><br>We can\'t wait to see you at the events!<br><br>Yours truly,<br>IntroCee (Cover\'s Introductory Committee)<br><br>
-                P.S. If you haven\'t signed up for it yet, check out the <b>'.$link.'</b>, make sure to check it out.';
+                P.S. If you haven\'t signed up for it yet, check out the <b>'.$link.'</b>.';
 
                 $subject = 'Sign-Up Confirmation for ' . PaymentController::$events[request()->event];
 

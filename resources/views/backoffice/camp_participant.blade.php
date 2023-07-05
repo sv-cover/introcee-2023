@@ -451,52 +451,151 @@
                         </div>
                         <!--end::Modal header-->
                         <!--begin::Modal body-->
-                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 mt-2">
                             <!--begin::Form-->
                             <form id="kt_modal_add_payment_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                                  action="#">
-                                <!--begin::Input group-->
+                                  action="" method="post">
+                                @csrf
 
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7 fv-plugins-icon-container">
-                                    <!--begin::Label-->
-                                    <label class="required fs-6 fw-semibold form-label mb-2">Participant Fee</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <select class="form-select form-select-solid fw-bold select2-hidden-accessible"
-                                            name="status" data-control="select2" data-placeholder="Select an option"
-                                            data-hide-search="true" data-select2-id="select2-data-4-xvwc" tabindex="-1"
-                                            aria-hidden="true" data-kt-initialized="1">
-                                        <option data-select2-id="select2-data-6-ijzx"></option>
-                                        <option value="14.75">IntroCee (25% - €14.75)</option>
-                                        <option value="29.5">HEROCee (50% - €29.5)</option>
-                                        <option value="44.25">PhotoCee (77% - €44.25)</option>
-                                        <option value="59">Full (100% - €59)</option>
-                                        <option value="0">Mentor (0% - €0)</option>
-                                    </select><span class="select2 select2-container select2-container--bootstrap5"
-                                                   dir="ltr" data-select2-id="select2-data-5-m8jy" style="width: 100%;"><span
-                                            class="selection"><span
-                                                class="select2-selection select2-selection--single form-select form-select-solid fw-bold"
-                                                role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0"
-                                                aria-disabled="false" aria-labelledby="select2-status-7z-container"
-                                                aria-controls="select2-status-7z-container"><span
-                                                    class="select2-selection__rendered" id="select2-status-7z-container"
-                                                    role="textbox" aria-readonly="true" title="Select an option"><span
-                                                        class="select2-selection__placeholder">Select an option</span></span><span
-                                                    class="select2-selection__arrow" role="presentation"><b
-                                                        role="presentation"></b></span></span></span><span
-                                            class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                    <!--end::Input-->
-                                    <div class="fv-plugins-message-container invalid-feedback"></div>
-                                </div>
-                                <!--end::Input group-->
+                                <h4 class="mb-8">Select Senior Fee</h4>
+
+                                <label class="d-flex flex-stack cursor-pointer mb-5">
+                                    <!--begin:Label-->
+                                    <span class="d-flex align-items-center me-2">
+														<!--begin:Icon-->
+														<span class="symbol symbol-50px me-6">
+															<span class="symbol-label bg-light-success">
+																<i class="ki-outline ki-note-2 fs-2x text-success"></i>
+															</span>
+														</span>
+                                        <!--end:Icon-->
+                                        <!--begin:Info-->
+														<span class="d-flex flex-column">
+															<span class="fw-bold fs-6">Regular Fee - 0%</span>
+															<span class="fs-7 text-muted">Final fee: €59</span>
+														</span>
+                                        <!--end:Info-->
+													</span>
+                                    <!--end:Label-->
+                                    <!--begin:Input-->
+                                    <span class="form-check form-check-custom form-check-solid">
+														<input class="form-check-input" type="radio" checked="checked"
+                                                               name="fee" value="59">
+													</span>
+                                    <!--end:Input-->
+                                </label>
+
+                                <label class="d-flex flex-stack cursor-pointer mb-5">
+                                    <!--begin:Label-->
+                                    <span class="d-flex align-items-center me-2">
+														<!--begin:Icon-->
+														<span class="symbol symbol-50px me-6">
+															<span class="symbol-label bg-light-primary">
+																<i class="ki-outline ki-award fs-2x text-primary"></i>
+															</span>
+														</span>
+                                        <!--end:Icon-->
+                                        <!--begin:Info-->
+														<span class="d-flex flex-column">
+															<span class="fw-bold fs-6">IntroCee - 75%</span>
+															<span class="fs-7 text-muted">Final fee: €14.75</span>
+														</span>
+                                        <!--end:Info-->
+													</span>
+                                    <!--end:Label-->
+                                    <!--begin:Input-->
+                                    <span class="form-check form-check-custom form-check-solid">
+														<input class="form-check-input" type="radio"
+                                                               name="fee" value="14.75">
+													</span>
+                                    <!--end:Input-->
+                                </label>
+
+                                <label class="d-flex flex-stack cursor-pointer mb-5">
+                                    <!--begin:Label-->
+                                    <span class="d-flex align-items-center me-2">
+														<!--begin:Icon-->
+														<span class="symbol symbol-50px me-6">
+															<span class="symbol-label bg-light-danger">
+																<i class="las la-medkit fs-2x text-danger"></i>
+															</span>
+														</span>
+                                        <!--end:Icon-->
+                                        <!--begin:Info-->
+														<span class="d-flex flex-column">
+															<span class="fw-bold fs-6">HeroCee - 50%</span>
+															<span class="fs-7 text-muted">Final fee: €29.5</span>
+														</span>
+                                        <!--end:Info-->
+													</span>
+                                    <!--end:Label-->
+                                    <!--begin:Input-->
+                                    <span class="form-check form-check-custom form-check-solid">
+														<input class="form-check-input" type="radio"
+                                                               name="fee" value="29.5">
+													</span>
+                                    <!--end:Input-->
+                                </label>
+
+                                <label class="d-flex flex-stack cursor-pointer mb-5">
+                                    <!--begin:Label-->
+                                    <span class="d-flex align-items-center me-2">
+														<!--begin:Icon-->
+														<span class="symbol symbol-50px me-6">
+															<span class="symbol-label bg-light-warning">
+																<i class="las la-camera-retro fs-2x text-warning"></i>
+															</span>
+														</span>
+                                        <!--end:Icon-->
+                                        <!--begin:Info-->
+														<span class="d-flex flex-column">
+															<span class="fw-bold fs-6">PhotoCee - 25%</span>
+															<span class="fs-7 text-muted">Final fee: €44.25</span>
+														</span>
+                                        <!--end:Info-->
+													</span>
+                                    <!--end:Label-->
+                                    <!--begin:Input-->
+                                    <span class="form-check form-check-custom form-check-solid">
+														<input class="form-check-input" type="radio"
+                                                               name="fee" value="44.25">
+													</span>
+                                    <!--end:Input-->
+                                </label>
+
+                                <label class="d-flex flex-stack cursor-pointer mb-5">
+                                    <!--begin:Label-->
+                                    <span class="d-flex align-items-center me-2">
+														<!--begin:Icon-->
+														<span class="symbol symbol-50px me-6">
+															<span class="symbol-label bg-light-info">
+																<i class="las la-graduation-cap fs-2x text-info"></i>
+															</span>
+														</span>
+                                        <!--end:Icon-->
+                                        <!--begin:Info-->
+														<span class="d-flex flex-column">
+															<span class="fw-bold fs-6">Mentor - 100%</span>
+															<span class="fs-7 text-muted">Final fee: €0</span>
+														</span>
+                                        <!--end:Info-->
+													</span>
+                                    <!--end:Label-->
+                                    <!--begin:Input-->
+                                    <span class="form-check form-check-custom form-check-solid">
+														<input class="form-check-input" type="radio"
+                                                               name="fee" value="0">
+													</span>
+                                    <!--end:Input-->
+                                </label>
+
                                 <!--begin::Actions-->
-                                <div class="text-center">
+                                <div class="text-center mt-15">
                                     <button type="reset" id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
                                         Discard
                                     </button>
-                                    <button type="submit" id="kt_modal_add_payment_submit" class="btn btn-primary">
-                                        <span class="indicator-label">Submit</span>
+                                    <button type="submit" name="confirm" value="1" id="kt_modal_add_payment_submit" class="btn btn-primary">
+                                        <span class="indicator-label">Send Confirmation Email</span>
                                         <span class="indicator-progress">Please wait...
 																<span
                                                                     class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
