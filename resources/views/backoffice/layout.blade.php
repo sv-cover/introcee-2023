@@ -116,9 +116,17 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Chat-->
                         <div class="app-navbar-item ms-1 ms-lg-3">
                             <!--begin::Menu wrapper-->
-                            <a href="{{ route('admin') }}">
+                            <a href="{{ route('backoffice.scanner') }}">
                                 <div
-                                    class="btn btn-icon btn-circle btn-color-gray-500 btn-active-color-primary btn-custom shadow-xs bg-body"
+                                    class="btn btn-color-gray-500 btn-active-color-primary btn-custom shadow-xs bg-body"
+                                    id="kt_drawer_chat_toggle">
+                                    <i class="ki-outline ki-barcode fs-1"></i> Scanner
+                                </div>
+                            </a>
+
+                            <a class="ms-5" href="{{ route('admin') }}">
+                                <div
+                                    class="btn btn-icon btn-color-gray-500 btn-active-color-primary btn-custom shadow-xs bg-body"
                                     id="kt_drawer_chat_toggle">
                                     <i class="ki-outline ki-home fs-1"></i>
                                 </div>
