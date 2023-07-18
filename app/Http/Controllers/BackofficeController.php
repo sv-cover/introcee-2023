@@ -27,11 +27,11 @@ class BackofficeController extends Controller {
 
     public function camp_participant() {
         if (!isset($_GET['id'])) {
-            return redirect()->route('backoffice.camp');
+            return view('backoffice.404');
         }
         $participant = ParticipantCamp::where('id', request()->id)->first();
         if (!$participant) {
-            return redirect()->route('backoffice.camp');
+            return view('backoffice.404');
         }
         return view('backoffice.camp_participant', ['participant' => $participant]);
     }

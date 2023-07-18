@@ -294,6 +294,24 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--end::Link-->
                                 </div>
                                 <!--end::Col-->
+                                <!--begin::Col-->
+                                <div class="col mb-4">
+                                    <!--begin::Link-->
+                                    <a href="{{ route('backoffice.scanner') }}"
+                                       class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary {{ Route::is('backoffice.camp') && 'active' }} btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
+                                       data-kt-button="true">
+                                        <!--begin::Icon-->
+                                        <span class="mb-2">
+											<i class="ki-outline ki-barcode fs-1"></i>
+                                        </span>
+                                        <!--end::Icon-->
+                                        <!--begin::Label-->
+                                        <span class="fs-7 fw-bold">Scanner</span>
+                                        <!--end::Label-->
+                                    </a>
+                                    <!--end::Link-->
+                                </div>
+                                <!--end::Col-->
                             </div>
                             <!--end::Row-->
                         </div>

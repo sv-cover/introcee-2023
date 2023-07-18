@@ -60,6 +60,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'can.access.backoffice'], fun
     Route::get('/bbq', [BackofficeController::class, 'bbq'])->name('backoffice.bbq');
     Route::get('/camp/participant', [BackofficeController::class, 'camp_participant'])->name('backoffice.camp.participant');
     Route::post('/camp/participant', [BackofficeController::class, 'confirm_camp_participant']);
+    Route::get('/camp/scanner', function(){ return view ('backoffice.scanner'); })->name('backoffice.scanner');
     Route::get('/bbq/participant', [BackofficeController::class, 'bbq_participant'])->name('backoffice.bbq.participant');
     Route::get('/pos/products', function(){ return view ('backoffice.pos.products'); })->name('backoffice.pos.products');
     Route::get('/pos/products/add', [BackofficeController::class, 'addproduct_view'])->name('backoffice.pos.products.add');
