@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\CoverApi;
 use App\Mail\SendMail;
+use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
@@ -206,12 +208,28 @@ class BackofficeController extends Controller {
         return $participant;
     }
 
+    protected function make_name(){
+        $coverApi = app(CoverApi::class);
+        $session = $coverApi->get_cover_session();
+        $name = $session->voornaam;
+        if($session->tussenvoegsel)
+            $name .= ' ' . $session->tussenvoegsel;
+        $name .= ' ' . $session->achternaam;
+        return $name;
+    }
+
     public function check_in(){
         $participant = $this->check();
         if(!is_a($participant, 'App\Models\ParticipantCamp'))
             return $participant;
         $participant->checked_in = true;
         $participant->save();
+        $text = $this->make_name() . ' has checked in the participant.';
+        $comment = new Comment([
+            'text' => $text,
+            'participant' => $participant->id
+        ]);
+        $comment->save();
         return redirect(route('backoffice.camp.participant', ['id' => $participant->id]));
     }
 
@@ -221,6 +239,25 @@ class BackofficeController extends Controller {
             return $participant;
         $participant->checked_in = false;
         $participant->save();
+        $text = $this->make_name() . ' has checked out the participant.';
+        $comment = new Comment([
+            'text' => $text,
+            'participant' => $participant->id
+        ]);
+        $comment->save();
         return redirect(route('backoffice.camp.participant', ['id' => $participant->id]));
+    }
+
+    public function add_comment(){
+        $participant = $this->check();
+        if(!is_a($participant, 'App\Models\ParticipantCamp'))
+            return $participant;
+        $comment = new Comment([
+            'author' => $this->make_name(),
+            'text' => request()->comment,
+            'participant' => $participant->id
+        ]);
+        $comment->save();
+        return redirect(route('backoffice.camp.participant', ['id' => $participant->id]) . '#comments');
     }
 }

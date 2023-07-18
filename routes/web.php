@@ -70,4 +70,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'can.access.backoffice'], fun
     Route::post('/pos/products', [BackofficeController::class, 'product_delete'])->name('backoffice.pos.products.delete');
     Route::post('/checkin', [BackofficeController::class, 'check_in'])->name('backoffice.checkin');
     Route::post('/checkout', [BackofficeController::class, 'check_out'])->name('backoffice.checkout');
+    Route::post('/comment', [BackofficeController::class, 'add_comment'])->name('backoffice.comment');
 });

@@ -474,6 +474,48 @@
                 </div>
                 <!--end::Content-->
             </div>
+            <div class="card mb-5 mb-xl-8" id="comments">
+                <div class="card-header">
+                    <h3 class="card-title">Comments</h3>
+                </div>
+                <!--begin::Card body-->
+                <div class="card-body pt-10">
+                    <div class="mb-0">
+                        <form action="{{ route('backoffice.comment') }}" method="post">
+                            @csrf
+                            <textarea
+                                class="form-control form-control-solid placeholder-gray-100 fs-5 ps-9 pt-7"
+                                rows="3"
+                                name="comment"
+                                placeholder="Your comment..."
+                            ></textarea>
+                            <button
+                                type="submit"
+                                name="participant"
+                                value="{{ $participant->id }}"
+                                class="btn btn-primary mt-n20 mb-20 position-relative float-end me-7"
+                            >
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                    @foreach($participant->comments()->orderBy('created_at', 'desc')->get() as $comment)
+                        <div class="card card-bordered w-100 mt-5">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center f mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <a class="text-gray-800 fw-bold text-hover-primary fs-5 me-3">
+                                            {{ $comment->author ?? 'System' }}
+                                        </a>
+                                    </div>
+                                    <span class="text-muted fw-semibold fs-6">{{ $comment->created_at }}</span>
+                                </div>
+                                <p class="fw-normal fs-5 text-gray-700 m-0">{{ $comment->text }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
             <!--end::Layout-->
             <div class="modal fade" id="kt_modal_add_payment" tabindex="-1" style="display: none;" aria-hidden="true">
                 <!--begin::Modal dialog-->

@@ -5,6 +5,7 @@ namespace App\Models;
 use DateTime;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Post
@@ -30,5 +31,10 @@ class ParticipantCamp extends Model
         $today = new DateTime();
         $bday = new DateTime($this->date_of_birth);
         return $today->diff($bday)->y;
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'participant');
     }
 }
