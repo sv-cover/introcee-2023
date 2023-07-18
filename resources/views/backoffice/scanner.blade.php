@@ -31,7 +31,23 @@
                 var html5QrcodeScanner = new Html5QrcodeScanner(
                     "qr-reader", { fps: 10, qrbox: 250 });
                 html5QrcodeScanner.render(onScanSuccess);
+
+                document.getElementById("qr-reader").style.width = '100%';
             </script>
+
+            <style>
+                #html5-qrcode-button-camera-stop, #html5-qrcode-button-camera-start{
+                    background: #C8102E;
+                    color: white;
+                    border: 0;
+                    border-radius: 5px;
+                    padding: 10px 25px;
+                    font-weight: bold;
+                }
+                #html5-qrcode-anchor-scan-type-change{
+                    display: none;
+                }
+            </style>
 
         </div>
     </div>
