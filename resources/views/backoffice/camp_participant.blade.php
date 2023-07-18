@@ -51,6 +51,51 @@
             <div class="d-flex flex-column flex-xl-row">
                 <!--begin::Sidebar-->
                 <div class="flex-column flex-lg-row-auto w-100 w-xl-350px mb-10">
+                    @if($participant->confirmed)
+                        <div class="card mb-5 mb-xl-8">
+                            <!--begin::Card body-->
+                            <div class="card-body pt-10">
+                                <span class="mb-5" style="display: block;">
+                                    <b>Current status:</b>
+                                    @if($participant->checked_in)
+                                        <span class="badge badge-success">Checked In</span>
+                                    @else
+                                        <span class="badge badge-danger">Not Checked In</span>
+                                    @endif
+                                </span>
+                                <!--begin::Summary-->
+                                @if($participant->checked_in)
+                                    <form action="{{ route('backoffice.checkout') }}" method="post">
+                                        @csrf
+                                        <button
+                                            class="btn btn-block btn-light-danger"
+                                            name="participant"
+                                            value="{{ $participant->id }}"
+                                            type="submit"
+                                            style="width: 100%;"
+                                        >
+                                            Check Out
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('backoffice.checkin') }}" method="post">
+                                        @csrf
+                                        <button
+                                            class="btn btn-block btn-light-success"
+                                            name="participant"
+                                            value="{{ $participant->id }}"
+                                            type="submit"
+                                            style="width: 100%;"
+                                        >
+                                            Check In
+                                        </button>
+                                    </form>
+                                @endif
+                                <!--end::Details content-->
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                    @endif
                     <!--begin::Card-->
                     <div class="card mb-5 mb-xl-8">
                         <!--begin::Card body-->
@@ -594,7 +639,8 @@
                                     <button type="reset" id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
                                         Discard
                                     </button>
-                                    <button type="submit" name="confirm" value="1" id="kt_modal_add_payment_submit" class="btn btn-primary">
+                                    <button type="submit" name="confirm" value="1" id="kt_modal_add_payment_submit"
+                                            class="btn btn-primary">
                                         <span class="indicator-label">Send Confirmation Email</span>
                                         <span class="indicator-progress">Please wait...
 																<span

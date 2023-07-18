@@ -31,5 +31,4 @@ class ParticipantCamp extends Model
         $bday = new DateTime($this->date_of_birth);
         return $today->diff($bday)->y;
     }
-
 }

@@ -68,4 +68,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'can.access.backoffice'], fun
     Route::get('/pos/products/edit', [BackofficeController::class, 'product_edit'])->name('backoffice.pos.products.edit');
     Route::post('/pos/products/edit', [BackofficeController::class, 'product_edit_save']);
     Route::post('/pos/products', [BackofficeController::class, 'product_delete'])->name('backoffice.pos.products.delete');
+    Route::post('/checkin', [BackofficeController::class, 'check_in'])->name('backoffice.checkin');
+    Route::post('/checkout', [BackofficeController::class, 'check_out'])->name('backoffice.checkout');
 });

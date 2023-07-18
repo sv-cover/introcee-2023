@@ -194,4 +194,33 @@ class BackofficeController extends Controller {
         $product->delete();
         return redirect(route('backoffice.pos.products'));
     }
+
+    private function check(){
+        if (!isset(request()->participant)) {
+            return redirect(route('backoffice.404'));
+        }
+        $participant = ParticipantCamp::find(request()->participant);
+        if (!$participant) {
+            return redirect(route('backoffice.404'));
+        }
+        return $participant;
+    }
+
+    public function check_in(){
+        $participant = $this->check();
+        if(!is_a($participant, 'App\Models\ParticipantCamp'))
+            return $participant;
+        $participant->checked_in = true;
+        $participant->save();
+        return redirect(route('backoffice.camp.participant', ['id' => $participant->id]));
+    }
+
+    public function check_out(){
+        $participant = $this->check();
+        if(!is_a($participant, 'App\Models\ParticipantCamp'))
+            return $participant;
+        $participant->checked_in = false;
+        $participant->save();
+        return redirect(route('backoffice.camp.participant', ['id' => $participant->id]));
+    }
 }
