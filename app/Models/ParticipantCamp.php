@@ -37,4 +37,9 @@ class ParticipantCamp extends Model
     {
         return $this->hasMany(Comment::class, 'participant');
     }
+
+    public function getWallet(): ?Wallet
+    {
+        return Wallet::where('email', $this->email_address)->first();
+    }
 }

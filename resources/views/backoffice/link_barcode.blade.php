@@ -1,5 +1,5 @@
 @extends('backoffice.layout')
-@section('title', $participant->first_name . ' ' . $participant->last_name . ' (Camp)' )
+@section('title', 'Link barcode to ' . $participant->first_name . ' ' . $participant->last_name )
 
 @section('content')
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-0">
@@ -9,7 +9,7 @@
             <div class="page-title d-flex flex-column justify-content-center me-3">
                 <!--begin::Title-->
                 <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                    IntroCamp Participant
+                    Link barcode to wallet
                 </h1>
                 <!--end::Title-->
                 <!--begin::Breadcrumb-->
@@ -21,7 +21,7 @@
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                        <span class="bullet bwg-gray-400 w-5px h-2px"></span>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
@@ -92,25 +92,19 @@
                                     </form>
                                 @endif
                                 <!--end::Details content-->
-                                <span class="mt-6" style="display: block;">
+                                <span class="mb-5 mt-6" style="display: block;">
                                     <b>Card:</b>
-                                    @if($participant->getWallet())
-                                        @if($participant->getWallet()->barcode)
-                                            <span class="badge badge-light-dark">{{$participant->getWallet()->barcode}}</span>
-                                        @else
-                                            <span class="badge badge-danger">No card linked</span>
-                                       @endif
+                                    @if($participant->barcode)
+                                        <span class="badge badge-light-dark">{{$participant->barcode}}</span>
                                     @else
-                                        <span class="badge badge-warning">No wallet generated</span>
+                                        <span class="badge badge-danger">No card linked</span>
                                     @endif
                                 </span>
-                                @if($participant->getWallet() && !$participant->getWallet()->barcode)
+                                @if(!$participant->barcode)
                                     <a
-                                        class="btn mt-5 btn-block btn-light-info"
+                                        class="btn btn-block btn-light-info"
                                         type="submit"
                                         style="width: 100%;"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#kt_modal_link_barcode"
                                     >
                                         Link Barcode
                                     </a>
@@ -698,96 +692,6 @@
 													</span>
                                     <!--end:Input-->
                                 </label>
-
-                                <!--begin::Actions-->
-                                <div class="text-center mt-15">
-                                    <button type="reset" id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
-                                        Discard
-                                    </button>
-                                    <button type="submit" name="confirm" value="1" id="kt_modal_add_payment_submit"
-                                            class="btn btn-primary">
-                                        <span class="indicator-label">Send Confirmation Email</span>
-                                        <span class="indicator-progress">Please wait...
-																<span
-                                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                    </button>
-                                </div>
-                                <!--end::Actions-->
-                            </form>
-                            <!--end::Form-->
-                        </div>
-                        <!--end::Modal body-->
-                    </div>
-                    <!--end::Modal content-->
-                </div>
-                <!--end::Modal dialog-->
-            </div>
-            <div class="modal fade" id="kt_modal_link_barcode" tabindex="-1" style="display: none;" aria-hidden="true">
-                <!--begin::Modal dialog-->
-                <div class="modal-dialog mw-650px">
-                    <!--begin::Modal content-->
-                    <div class="modal-content">
-                        <!--begin::Modal header-->
-                        <div class="modal-header">
-                            <!--begin::Modal title-->
-                            <h2 class="fw-bold">Link barcode for {{ $participant->first_name }}</h2>
-                            <!--end::Modal title-->
-                            <!--begin::Close-->
-                            <div id="kt_modal_add_payment_close" class="btn btn-icon btn-sm btn-active-icon-primary"
-                                 data-bs-toggle="modal"
-                                 data-bs-target="#kt_modal_add_payment"
-                            >
-                                <i class="ki-outline ki-cross fs-1"></i>
-                            </div>
-                            <!--end::Close-->
-                        </div>
-                        <!--end::Modal header-->
-                        <!--begin::Modal body-->
-                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 mt-2">
-                            <!--begin::Form-->
-                            <form id="kt_modal_add_payment_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                                  action="" method="post">
-
-                                <label for="barcode">Barcode</label>
-                                <input class="mb-6 form-control form-control-solid" id="barcode" type="text" placeholder="Barcode here..."/>
-
-                                <script src="{{ asset('backoffice/js/html5-qrcode.min.js') }}"></script>
-
-                                <div id="qr-reader" style="width:500px"></div>
-                                <div id="qr-reader-results"></div>
-
-                                <script>
-                                    var resultContainer = document.getElementById('qr-reader-results');
-                                    var lastResult, countResults = 0;
-
-                                    function onScanSuccess(decodedText, decodedResult) {
-                                        if (decodedText !== lastResult) {
-                                            ++countResults;
-                                            lastResult = decodedText;
-                                            document.getElementById('barcode').value = decodedText;
-                                        }
-                                    }
-
-                                    var html5QrcodeScanner = new Html5QrcodeScanner(
-                                        "qr-reader", { fps: 10, qrbox: 250 });
-                                    html5QrcodeScanner.render(onScanSuccess);
-
-                                    document.getElementById("qr-reader").style.width = '100%';
-                                </script>
-
-                                <style>
-                                    #html5-qrcode-button-camera-stop, #html5-qrcode-button-camera-start{
-                                        background: #C8102E;
-                                        color: white;
-                                        border: 0;
-                                        border-radius: 5px;
-                                        padding: 10px 25px;
-                                        font-weight: bold;
-                                    }
-                                    #html5-qrcode-anchor-scan-type-change{
-                                        display: none;
-                                    }
-                                </style>
 
                                 <!--begin::Actions-->
                                 <div class="text-center mt-15">

@@ -118,9 +118,9 @@ License: For each use you must have a valid license purchased only from above li
                             <!--begin::Menu wrapper-->
                             <a href="{{ route('backoffice.scanner') }}">
                                 <div
-                                    class="btn btn-color-gray-500 btn-active-color-primary btn-custom shadow-xs bg-body"
+                                    class="btn btn-icon btn-color-gray-500 btn-active-color-primary btn-custom shadow-xs bg-body"
                                     id="kt_drawer_chat_toggle">
-                                    <i class="ki-outline ki-barcode fs-1"></i> Scanner
+                                    <i class="ki-outline ki-barcode fs-1"></i>
                                 </div>
                             </a>
 
