@@ -107,7 +107,7 @@ class ApiController extends Controller
         if(!isset(request()->pin)){
             return $this->errorResponse('Request not formatted properly.', 400);
         }
-        if(request()->pin != 2411){
+        if(request()->pin != 1993){
             return response('Wrong PIN code.', 401);
         }
         return response('', 200);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CoverApi;
 use App\Mail\SendMail;
+use App\Models\Auction;
 use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Wallet;
@@ -259,5 +260,18 @@ class BackofficeController extends Controller {
         ]);
         $comment->save();
         return redirect(route('backoffice.camp.participant', ['id' => $participant->id]) . '#comments');
+    }
+
+    public function submit_auction(){
+        $wallet = Wallet::where('barcode', request()->barcode)->first();
+        $auction = new Auction([
+            'wallet' => $wallet->id,
+            'product' => request()->product,
+            'price' => request()->price,
+        ]);
+        $auction->save();
+        $wallet->balance -= request()->price;
+        $wallet->save();
+        return redirect(route('backoffice.pos.auction'));
     }
 }

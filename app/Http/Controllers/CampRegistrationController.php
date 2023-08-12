@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\ParticipantCamp;
 use Illuminate\Http\Request;
 
@@ -82,5 +84,71 @@ class CampRegistrationController extends Controller
             ['first_year', true],
             ['confirmed', true],
         ])->count();
+    }
+
+    public static function send_last_email(){
+        $participants = ParticipantCamp::all();
+        forEach($participants as $participant)
+            if($participant->confirmed && !$participant->email_sent){
+                $mail_body = 'Dear ' . $participant->first_name . ',<br><br>
+                As we are coming closer to the camp, here is some important information: <br><br>
+                On <b>Friday, September 10</b>, the buses will depart at 15:00. Please gather at 14:50 at the designated
+                spot (<a href="https://goo.gl/maps/GAXAjBiL2BKNhmTg9">click here</a>). While boarding the bus, please show
+                this QR code to the IntroCee representatives checking you in:<br><br>
+                <img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='.$participant->id.'" style="margin:auto;display:block;" />
+                <br><br>Please keep this email ready in the bus as well, as you will receive your bracelet and barcode during the trip.<br><br>
+                <b>Here are some important items that you should not forget home:</b>
+                <ul>
+                    <li>Clothing:
+                        <ul>
+                            <li>Clothes, socks and underwear for 3 days</li>
+                            <li>Pair of long pants</li>
+                            <li>Sweater (in case of cold weather)</li>
+                            <li>Sun hat</li>
+                            <li>Old t-shirt and bottoms (to get dirty)</li>
+                            <li>Pyjamas</li>
+                            <li>Any kind of neon +  army/camo clothing or accesories</li>
+                            <li>Comfortable shoes</li>
+                            <li>(Garbage) bag for dirty clothes</li>
+                        </ul>
+                    </li>
+                    <li>Hygiene:
+                        <ul>
+                            <li>Towel + Washcloth</li>
+                            <li>Toothbrush + Toothpaste</li>
+                            <li>Shampoo, Soap, Shower Gel</li>
+                            <li>Deodorant</li>
+                            <li>Sunscreen</li>
+                            <li>Bugspray</li>
+                            <li>Medicine (if applicable)</li>
+                        </ul>
+                    </li>
+                    <li>Others:
+                        <ul>
+                            <li>Wallet / Money (in case of emergencies)</li>
+                            <li>Water bottle</li>
+                            <li>ID</li>
+                            <li>Phone + Charger</li>
+                            <li>Any fun group board/card games (Optional)</li>
+                        </ul>
+                    </li>
+                </ul><br><br>
+                We look forward to seeing you at the camp! Please remember that all drinks at the camp will be purchased
+                using your virtual wallet. If you haven\'t done so already, consider topping up your account.';
+                $button_text = 'Go to my wallet';
+                $button_link = route('wallet', ['id' => $participant->getWallet()->id]);
+                $subject = 'Last Information for Cover Introductory Camp';
+                $title = 'The camp is around the corner!';
+                $mailData = [
+                    'title' => $title,
+                    'body' => $mail_body,
+                    'buttonlink' => $button_link,
+                    'buttontext' => $button_text
+                ];
+                Mail::to($participant->email_address)->send(new SendMail($mailData, $subject));
+                $participant->email_sent = true;
+                $participant->save();
+            }
+        return redirect(route('backoffice.camp'));
     }
 }

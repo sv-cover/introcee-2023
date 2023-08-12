@@ -38,6 +38,10 @@
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
+            <form action="{{ route('backoffice.camp.email') }}" method="post">
+                @csrf
+                <button class="btn btn-info mb-6">Send Last Information Email</button>
+            </form>
             <!--begin::Card-->
             <div class="card">
                 <!--begin::Card header-->
@@ -111,6 +115,40 @@
                                         <!--end::Options-->
                                     </div>
                                     <!--end::Input group-->
+                                    <div class="mb-10">
+                                        <!--begin::Label-->
+                                        <label class="form-label fs-5 fw-semibold mb-3">Checked-in:</label>
+                                        <!--end::Label-->
+                                        <!--begin::Options-->
+                                        <div class="d-flex flex-column flex-wrap fw-semibold"
+                                             data-kt-customer-table-filter="participant_checkedin">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
+                                                <input class="form-check-input" type="radio" name="participant_checkedin"
+                                                       value="all" checked="checked">
+                                                <span class="form-check-label text-gray-600">All</span>
+                                            </label>
+                                            <!--end::Option-->
+                                            <!--begin::Option-->
+                                            <label
+                                                class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
+                                                <input class="form-check-input" type="radio" name="participant_checkedin"
+                                                       value="checked-in">
+                                                <span class="form-check-label text-gray-600">Yes</span>
+                                            </label>
+                                            <!--end::Option-->
+                                            <!--begin::Option-->
+                                            <label
+                                                class="form-check form-check-sm form-check-custom form-check-solid mb-3">
+                                                <input class="form-check-input" type="radio" name="participant_checkedin"
+                                                       value="checked-out">
+                                                <span class="form-check-label text-gray-600">No</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Options-->
+                                    </div>
                                     <!--begin::Input group-->
                                     <div class="mb-10">
                                         <!--begin::Label-->
@@ -202,6 +240,10 @@
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1"
+                                    >Checked-in
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
+                                        rowspan="1" colspan="1"
                                         aria-label="Created Date: activate to sort column ascending"
                                         >Created Date
                                     </th>
@@ -233,14 +275,21 @@
                                             {{ $participant->phone_number }}
                                         </td>
                                         <td data-filter="{{ $participant->first_year ? 'first_year' : 'senior' }}">
-                                            @if($participant->first_year == true)
+                                            @if($participant->first_year)
                                                 <span class="badge badge-primary">First Year</span>
-                                            @elseif($participant->senior == true)
+                                            @elseif($participant->senior)
                                                 <span class="badge badge-success">Senior</span>
                                             @endif
                                         </td>
                                         <td data-filter="{{ $participant->confirmed ? 'yes' : 'no' }}">
-                                            @if($participant->confirmed == true)
+                                            @if($participant->confirmed)
+                                                <span class="badge badge-success">Yes</span>
+                                            @else
+                                                <span class="badge badge-danger">No</span>
+                                            @endif
+                                        </td>
+                                        <td data-filter="{{ $participant->checked_in ? 'checked-in' : 'checked-out' }}">
+                                            @if($participant->checked_in)
                                                 <span class="badge badge-success">Yes</span>
                                             @else
                                                 <span class="badge badge-danger">No</span>

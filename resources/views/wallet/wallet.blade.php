@@ -17,6 +17,31 @@
                     If you did not receive an email, please contact us at <a href="mailto:introcee@svcover.nl">introcee@svcover.nl</a>.
                 </div>
             </div>
+            <div class="wallet-notification warning">
+                <div>
+                    <i class="fa fa-exclamation-triangle"></i>
+                </div>
+                <div>
+                    To have easy access to your wallet history & top-ups, it is a good idea to bookmark this page to the
+                    home screen of your phone. Regardless, you can always access this page through the link in your
+                    email.
+                </div>
+            </div>
+            @if($wallet->balance < 0)
+                <form action="{{ route('topup.payment') }}" method="post">
+                    @csrf
+                    <button
+                        class="btn-topup btn-block"
+                        style="background:#C8102E;margin-bottom: 40px;"
+                        type="submit"
+                    >
+                        Pay Negative Balance
+                    </button>
+                    <input type="hidden" name="event" value="topup"/>
+                    <input type="hidden" name="amount" id="amount" value="{{ -$wallet->balance }}"/>
+                    <input type="hidden" name="id" value="{{ $wallet->id }}"/>
+                </form>
+            @endif
             <div class="wallet-header">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-8 wallet-info">
@@ -46,6 +71,26 @@
             <div class="row mt-5">
                 <div class="col-12 col-md-6">
                     <!-- PURCHASES -->
+                    <div class="white-box">
+                        <h4>Purchases</h4>
+                        <ul class="purchase-list">
+                            @if(count($wallet->purchases) == 0)
+                                You have not topped up your wallet yet.
+                            @endif
+                            @foreach($wallet->purchases as $purchase)
+                                <li class="row">
+                                    <div class="col-md-3 col-4 amount">
+                                        <span>€ <b>{{ $purchase->total }}</b></span>
+                                    </div>
+                                    <div class="col-md-9 col-8 details">
+                                        {{ $purchase->quantity }}x {{ $purchase->product()->get()[0]->name }}
+                                        ({{ $purchase->price_per_unit }})
+                                        <span>{{ $purchase->created_at }}</span>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="white-box">

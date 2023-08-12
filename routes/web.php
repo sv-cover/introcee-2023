@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'can.access.backoffice'], fun
     Route::get('/camp', [BackofficeController::class, 'camp'])->name('backoffice.camp');
     Route::get('/bbq', [BackofficeController::class, 'bbq'])->name('backoffice.bbq');
     Route::get('/camp/participant', [BackofficeController::class, 'camp_participant'])->name('backoffice.camp.participant');
+    Route::post('/camp/emails', [CampRegistrationController::class, 'send_last_email'])->name('backoffice.camp.email');
     Route::post('/camp/participant', [BackofficeController::class, 'confirm_camp_participant']);
     Route::get('/camp/scanner', function(){ return view ('backoffice.scanner'); })->name('backoffice.scanner');
     Route::get('/bbq/participant', [BackofficeController::class, 'bbq_participant'])->name('backoffice.bbq.participant');
@@ -68,6 +69,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'can.access.backoffice'], fun
     Route::get('/pos/products/edit', [BackofficeController::class, 'product_edit'])->name('backoffice.pos.products.edit');
     Route::post('/pos/products/edit', [BackofficeController::class, 'product_edit_save']);
     Route::post('/pos/products', [BackofficeController::class, 'product_delete'])->name('backoffice.pos.products.delete');
+    Route::post('/pos/wallets/linkbarcode', [WalletController::class, 'link_barcode'])->name('backoffice.pos.wallets.linkbarcode');
+    Route::get('/pos/auction', function(){ return view('backoffice.pos.auction'); })->name('backoffice.pos.auction');
+    Route::post('/pos/auction', [BackofficeController::class, 'submit_auction'])->name('backoffice.pos.submitauction');
     Route::post('/checkin', [BackofficeController::class, 'check_in'])->name('backoffice.checkin');
     Route::post('/checkout', [BackofficeController::class, 'check_out'])->name('backoffice.checkout');
     Route::post('/comment', [BackofficeController::class, 'add_comment'])->name('backoffice.comment');

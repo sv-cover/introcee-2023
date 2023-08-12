@@ -26,6 +26,11 @@ class Wallet extends Model
         return $this->hasMany(TopUp::class, 'wallet');
     }
 
+    public function auctions(): HasMany
+    {
+        return $this->hasMany(Auction::class, 'wallet');
+    }
+
     public function purchases(): HasMany
     {
         return $this->hasMany(Purchase::class, 'wallet');

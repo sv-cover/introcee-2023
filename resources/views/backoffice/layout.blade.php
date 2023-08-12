@@ -380,6 +380,22 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--end::Link-->
                                 </div>
                                 <!--end::Col-->
+                                <div class="col mb-4">
+                                    <!--begin::Link-->
+                                    <a href="{{ route('backoffice.pos.auction') }}"
+                                       class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary {{ Route::is('backoffice.pos.auction') && 'active' }} btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
+                                       data-kt-button="true">
+                                        <!--begin::Icon-->
+                                        <span class="mb-2">
+											<i class="las la-gavel fs-1"></i>
+                                        </span>
+                                        <!--end::Icon-->
+                                        <!--begin::Label-->
+                                        <span class="fs-7 fw-bold">Auction</span>
+                                        <!--end::Label-->
+                                    </a>
+                                    <!--end::Link-->
+                                </div>
                             </div>
                             <!--end::Row-->
                         </div>
@@ -471,7 +487,7 @@ License: For each use you must have a valid license purchased only from above li
 <script src="{{ asset('backoffice/campparticipants.js') }}"></script>
 <script src="{{ asset('backoffice/js/custom/apps/customers/add.js') }}"></script>
 <!--end::Custom Javascript-->
-
+@yield('extrascripts')
 <!--end::Javascript-->
 </body>
 <!--end::Body-->

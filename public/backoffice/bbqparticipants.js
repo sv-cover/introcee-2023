@@ -7,7 +7,6 @@ var KTCustomersList = function () {
     var filterMonth;
     var filterPayment;
     var filterConfirmed;
-    var filterCheckedIn;
     var table
 
     // Private functions
@@ -17,8 +16,8 @@ var KTCustomersList = function () {
 
         tableRows.forEach(row => {
             const dateRow = row.querySelectorAll('td');
-            const realDate = moment(dateRow[6].innerHTML, "YYYY-MM-DD HH:mm:ss").format(); // select date from 5th column in table
-            dateRow[6].setAttribute('data-order', realDate);
+            const realDate = moment(dateRow[5].innerHTML, "YYYY-MM-DD HH:mm:ss").format(); // select date from 5th column in table
+            dateRow[5].setAttribute('data-order', realDate);
         });
 
         // Init datatable --- more info on datatables: https://datatables.net/manual/
@@ -27,7 +26,7 @@ var KTCustomersList = function () {
             'order': [],
             'columnDefs': [
                 // { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 7 }, // Disable ordering on column 6 (actions)
+                { orderable: false, targets: 6 }, // Disable ordering on column 6 (actions)
             ]
         });
 
@@ -54,7 +53,6 @@ var KTCustomersList = function () {
         // filterMonth = $('[data-kt-customer-table-filter="month"]');
         filterPayment = document.querySelectorAll('[data-kt-customer-table-filter="participant_type"] [name="participant_type"]');
         filterConfirmed = document.querySelectorAll('[data-kt-customer-table-filter="participant_confirmed"] [name="participant_confirmed"]');
-        filterCheckedIn = document.querySelectorAll('[data-kt-customer-table-filter="participant_checkedin"] [name="participant_checkedin"]');
         const filterButton = document.querySelector('[data-kt-customer-table-filter="filter"]');
 
         // Filter datatable on submit
@@ -63,7 +61,6 @@ var KTCustomersList = function () {
             // const monthValue = filterMonth.val();
             let paymentValue = '';
             let confirmedValue = '';
-            let checkedInValue = '';
 
             // Get payment value
             filterPayment.forEach(r => {
@@ -88,20 +85,9 @@ var KTCustomersList = function () {
                 }
             });
 
-            filterCheckedIn.forEach(r => {
-                if (r.checked) {
-                    checkedInValue = r.value;
-                }
-
-                // Reset payment value if "All" is selected
-                if (checkedInValue === 'all') {
-                    checkedInValue = '';
-                }
-            });
-
             // Build filter string from filter options
             // const filterString = monthValue + ' ' + paymentValue;
-            const filterString = confirmedValue + ' ' + paymentValue + ' ' + checkedInValue;
+            const filterString = confirmedValue + ' ' + paymentValue;
 
             // Filter datatable --- official docs reference: https://datatables.net/reference/api/search()
             datatable.search(filterString).draw();

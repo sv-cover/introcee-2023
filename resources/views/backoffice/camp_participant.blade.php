@@ -746,10 +746,12 @@
                         <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 mt-2">
                             <!--begin::Form-->
                             <form id="kt_modal_add_payment_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                                  action="" method="post">
+                                  action="{{ route('backoffice.pos.wallets.linkbarcode') }}" method="post">
+                                @csrf
 
                                 <label for="barcode">Barcode</label>
-                                <input class="mb-6 form-control form-control-solid" id="barcode" type="text" placeholder="Barcode here..."/>
+                                <input name="barcode" class="mb-6 form-control form-control-solid" id="barcode" type="text" placeholder="Barcode here..."/>
+                                <input type="hidden" name="participant" value="{{$participant->id}}">
 
                                 <script src="{{ asset('backoffice/js/html5-qrcode.min.js') }}"></script>
 
@@ -796,10 +798,7 @@
                                     </button>
                                     <button type="submit" name="confirm" value="1" id="kt_modal_add_payment_submit"
                                             class="btn btn-primary">
-                                        <span class="indicator-label">Send Confirmation Email</span>
-                                        <span class="indicator-progress">Please wait...
-																<span
-                                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        <span class="indicator-label">Link barcode</span>
                                     </button>
                                 </div>
                                 <!--end::Actions-->
