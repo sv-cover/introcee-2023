@@ -8,7 +8,7 @@
             <h2 class="mb-5">Introductory Camp</h2>
             <div class="row gy-5 g-xl-10">
                 <!--begin::Col-->
-                <div class="col-sm-6 col-xl-3 mb-xl-10">
+                <div class="col-sm-6 col-xl-3">
                     <div class="card bg-body hoverable card-xl-stretch mb-xl-8">
                         <!--end::Card widget 2-->
                         <div class="card-body">
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xl-3 mb-xl-10">
+                <div class="col-sm-6 col-xl-3">
                     <div class="card bg-body hoverable card-xl-stretch mb-xl-8">
                         <!--end::Card widget 2-->
                         <div class="card-body">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xl-3 mb-xl-10">
+                <div class="col-sm-6 col-xl-3">
                     <div class="card bg-body hoverable card-xl-stretch mb-xl-8">
                         <!--end::Card widget 2-->
                         <div class="card-body">
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xl-3 mb-xl-10">
+                <div class="col-sm-6 col-xl-3">
                     <div class="card bg-body hoverable card-xl-stretch mb-xl-8">
                         <!--end::Card widget 2-->
                         <div class="card-body">
@@ -80,20 +80,6 @@
                 <!--end::Card widget 2-->
                 <div class="card-body">
                     <div id="camp-chart"></div>
-                    @php
-                        $participantCounts = \App\Models\ParticipantCamp::selectRaw('DATE(created_at) as date, COUNT(*) as count')
-                            ->groupBy('created_at')
-                            ->orderBy('created_at')
-                            ->get();
-
-                        $chartData = [];
-                        foreach ($participantCounts as $count) {
-                            $chartData[] = [
-                                'x' => strtotime($count->date) * 1000, // Convert to Unix timestamp in milliseconds
-                                'y' => $count->count,
-                            ];
-                        }
-                    @endphp
                 </div>
             </div>
         </div>
@@ -101,6 +87,32 @@
 @endsection
 
 @section('extrascripts')
+    @php
+        use Illuminate\Support\Facades\DB;
+
+            $participantsByDay = \App\Models\ParticipantCamp::select(DB::raw('DATE(created_at) as signup_date'), DB::raw('COUNT(*) as count'))
+    ->groupBy('signup_date')
+    ->get();
+
+    $participantCounts = [];
+
+    $startDate = \Carbon\Carbon::parse($participantsByDay->min('signup_date'));
+$endDate = \Carbon\Carbon::parse($participantsByDay->max('signup_date'));
+$currentDate = $startDate;
+
+$participantCounts = [];
+
+while ($currentDate <= $endDate) {
+    $matchingEntry = $participantsByDay->firstWhere('signup_date', $currentDate->toDateString());
+    $count = $matchingEntry ? $matchingEntry->count : 0;
+    $participantCounts[] = [$currentDate->timestamp * 1000, $count];
+    $currentDate->addDay();
+}
+
+$jsonData = json_encode($participantCounts);
+
+    @endphp
+
     <script>
         var options = {
             chart: {
@@ -113,52 +125,22 @@
             xaxis: {
                 type: 'datetime',
             },
-            yaxis: {
-                labels: {
-                    formatter: function (value) {
-                        return Math.round(value); // Round values to whole numbers
-                    },
-                },
-            },
-            series: [{
-                name: 'Participants',
-                data: @json($chartData),
-            }],
-            grid: {
-                borderColor: '#ededed',
-                strokeDashArray: 4,
-                yaxis: {
-                    lines: {
-                        show: true
-                    }
+            tooltip: {
+                x: {
+                    format: 'dd MMM yyyy'
                 }
             },
-            states: {
-                normal: {
-                    filter: {
-                        type: 'none',
-                        value: 0
-                    }
+
+            series: [{
+                name: 'Participants',
+                data: {{ $jsonData }},
+                markers: {
+                    size: 0,
+                    style: 'hollow',
                 },
-                hover: {
-                    filter: {
-                        type: 'none',
-                        value: 0
-                    }
-                },
-                active: {
-                    allowMultipleDataPointsSelection: false,
-                    filter: {
-                        type: 'none',
-                        value: 0
-                    }
-                },
-            },
-            stroke: {
-                curve: 'smooth',
-                show: true,
-                width: 3,
-                colors: '#C8102E'
+            }],
+            dataLabels: {
+                enabled: false
             },
         };
 
