@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTCustomersList = function () {
+var KTBBQList = function () {
     // Define shared variables
     var datatable;
     var filterMonth;
@@ -133,5 +133,5 @@ var KTCustomersList = function () {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
-    KTCustomersList.init();
+    KTBBQList.init();
 });

@@ -701,8 +701,8 @@
 
                                 <!--begin::Actions-->
                                 <div class="text-center mt-15">
-                                    <button type="reset" id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
-                                        Discard
+                                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_payment" id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
+                                        Cancel
                                     </button>
                                     <button type="submit" name="confirm" value="1" id="kt_modal_add_payment_submit"
                                             class="btn btn-primary">
@@ -735,7 +735,7 @@
                             <!--begin::Close-->
                             <div id="kt_modal_add_payment_close" class="btn btn-icon btn-sm btn-active-icon-primary"
                                  data-bs-toggle="modal"
-                                 data-bs-target="#kt_modal_add_payment"
+                                 data-bs-target="#kt_modal_link_barcode"
                             >
                                 <i class="ki-outline ki-cross fs-1"></i>
                             </div>
@@ -793,8 +793,8 @@
 
                                 <!--begin::Actions-->
                                 <div class="text-center mt-15">
-                                    <button type="reset" id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
-                                        Discard
+                                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_link_barcode" id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
+                                        Cancel
                                     </button>
                                     <button type="submit" name="confirm" value="1" id="kt_modal_add_payment_submit"
                                             class="btn btn-primary">
