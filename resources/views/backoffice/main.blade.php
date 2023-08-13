@@ -280,7 +280,7 @@ $jsonData = json_encode($participantCounts);
             },
         };
 
-        var chart2 = new ApexCharts(document.querySelector("#bbq--chart"), options2);
+        var chart2 = new ApexCharts(document.querySelector("#bbq-chart"), options2);
         chart2.render();
     </script>
 @endsection
