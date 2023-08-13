@@ -77,3 +77,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'can.access.backoffice'], fun
     Route::post('/checkout', [BackofficeController::class, 'check_out'])->name('backoffice.checkout');
     Route::post('/comment', [BackofficeController::class, 'add_comment'])->name('backoffice.comment');
 });
+
+Route::get('/bhv', function(){ return view('bhv'); })->name('bhv')->middleware('can.access.bhv');

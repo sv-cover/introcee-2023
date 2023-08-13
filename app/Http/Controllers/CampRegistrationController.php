@@ -33,6 +33,8 @@ class CampRegistrationController extends Controller
         $participant->first_year = true;
         $participant->fee = 49;
         $participant->terms_and_conditions = request()->terms_and_conditions == 'on';
+        $participant->dietary_requirements = request()->dietary_requirements ?? '';
+        $participant->remarks = request()->remarks ?? '';
         $participant->save();
         return redirect(route('payment', ['event' => 'camp', 'id' => $participant->id]));
     }
@@ -61,6 +63,8 @@ class CampRegistrationController extends Controller
         $participant->herocee = request()->herocee ?? false;
         $participant->board = request()->board ?? false;
         $participant->candidate_board = request()->candidate_board ?? false;
+        $participant->dietary_requirements = request()->dietary_requirements ?? '';
+        $participant->remarks = request()->remarks ?? '';
         $participant->save();
 
         return view('campregistration_confirmed_senior');
