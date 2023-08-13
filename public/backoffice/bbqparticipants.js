@@ -117,7 +117,7 @@ var KTCustomersList = function () {
     // Public methods
     return {
         init: function () {
-            table = document.querySelector('#kt_customers_table');
+            table = document.querySelector('#kt_bbq_table');
 
             if (!table) {
                 return;

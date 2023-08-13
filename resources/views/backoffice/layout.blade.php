@@ -485,6 +485,7 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Custom Javascript(used for this page only)-->
 <script src="{{ asset('backoffice/js/custom/apps/customers/list/export.js') }}"></script>
 <script src="{{ asset('backoffice/campparticipants.js') }}"></script>
+<script src="{{ asset('backoffice/bbqparticipants.js') }}"></script>
 <script src="{{ asset('backoffice/js/custom/apps/customers/add.js') }}"></script>
 <!--end::Custom Javascript-->
 @yield('extrascripts')

@@ -256,7 +256,7 @@
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
                                 @php($i = 1)
-                                @foreach(\App\Models\ParticipantCamp::all() as $participant)
+                                @foreach(\App\Models\ParticipantCamp::all()->reverse() as $participant)
                                     <tr class="{{ $i++ % 2 == 0 ? 'even' : 'odd' }}">
                                         <td>
                                             <a

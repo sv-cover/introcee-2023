@@ -174,7 +174,7 @@
                     <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="table-responsive">
                             <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer"
-                                   id="kt_customers_table">
+                                   id="kt_bbq_table">
                                 <thead>
                                 <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                     <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
@@ -214,7 +214,7 @@
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
                                 @php($i = 1)
-                                @foreach(\App\Models\ParticipantBarbecue::all() as $participant)
+                                @foreach(\App\Models\ParticipantBarbecue::all()->reverse() as $participant)
                                     <tr class="{{ $i++ % 2 == 0 ? 'even' : 'odd' }}">
                                         <td>
                                             <a
