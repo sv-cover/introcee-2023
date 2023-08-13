@@ -249,7 +249,7 @@
                                             <tr>
                                                 <td>Candidate Board</td>
                                                 <td>
-                                                    @if($participant->candy)
+                                                    @if($participant->candidate_board)
                                                         <span class="badge badge-light-success">Yes</span>
                                                     @else
                                                         <span class="badge badge-light-danger">No</span>
