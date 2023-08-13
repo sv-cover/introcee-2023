@@ -12,6 +12,27 @@
                    href="{{ route('bhv', ['event' => 'bbq']) }}">Barbecue</a>
             </div>
             @if(isset($_GET['event']) && $_GET['event'] == 'bbq')
+                <h5><b>Introductory Barbecue</b></h5>
+                <table class="table mt-4">
+                    <thead>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                    <th>Diet</th>
+                    <th>Remarks</th>
+                    </thead>
+                    <tbody>
+                    @foreach(\App\Models\ParticipantCamp::all() as $participant)
+                        <tr>
+                            <td>{{ $participant->first_name }}</td>
+                            <td>{{ $participant->last_name }}</td>
+                            <td>{{ $participant->phone_number }}</td>
+                            <td>{{ $participant->dietary_requirements }}</td>
+                            <td>{{ $participant->remarks }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             @else
                 <h5><b>Introductory Camp</b></h5>
                 <table class="table mt-4">

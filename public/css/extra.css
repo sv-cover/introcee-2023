@@ -385,12 +385,17 @@ ul.purchase-list li .details span{
     filter: brightness(100);
 }
 
-.backoffice-button{
-    padding: 10px 25px;
+.backoffice-buttons{
     position: fixed;
     left: 15px;
     bottom: 15px;
-    color: #0e2a47;
     z-index: 1000;
+}
+
+.backoffice-button{
+    padding: 10px 25px;
+    color: #0e2a47;
     font-weight: 500;
+    display: block;
+    width: fit-content;
 }

@@ -46,12 +46,21 @@
     @include('base.footer')
 </div>
 
-@if($coverApi->cover_session_in_committee('introcee') || $coverApi->cover_session_in_committee('board') || $coverApi->cover_session_in_committee('candy'))
-    <a href="{{ route('admin') }}" class="white-box backoffice-button">
-        <i class="fa fa-cog"></i>
-        Go to Backoffice
-    </a>
-@endif
+<div class="backoffice-buttons">
+    @if($coverApi->cover_session_in_committee('herocee') || $coverApi->cover_session_in_committee('board') || $coverApi->cover_session_in_committee('candy'))
+        <a href="{{ route('bhv', ['event' => 'camp']) }}" class="white-box backoffice-button">
+            <i class="fa fa-life-ring"></i>
+            BHV / ERO
+        </a>
+    @endif
+
+    @if($coverApi->cover_session_in_committee('introcee') || $coverApi->cover_session_in_committee('board') || $coverApi->cover_session_in_committee('candy'))
+        <a href="{{ route('admin') }}" class="white-box backoffice-button mt-3">
+            <i class="fa fa-cog"></i>
+            Go to Backoffice
+        </a>
+    @endif
+</div>
 
 
 <!-- jequery plugins -->
