@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'can.access.backoffice'], fun
     Route::post('/pos/wallets/linkbarcode', [WalletController::class, 'link_barcode'])->name('backoffice.pos.wallets.linkbarcode');
     Route::get('/pos/auction', function(){ return view('backoffice.pos.auction'); })->name('backoffice.pos.auction');
     Route::post('/pos/auction', [BackofficeController::class, 'submit_auction'])->name('backoffice.pos.submitauction');
+    Route::get('/pos/wallets', function() {return view('backoffice.pos.wallets');})->name('backoffice.pos.wallets');
     Route::post('/checkin', [BackofficeController::class, 'check_in'])->name('backoffice.checkin');
     Route::post('/checkout', [BackofficeController::class, 'check_out'])->name('backoffice.checkout');
     Route::post('/comment', [BackofficeController::class, 'add_comment'])->name('backoffice.comment');
