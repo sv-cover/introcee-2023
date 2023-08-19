@@ -38,6 +38,9 @@
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
+            <button class="btn btn-info mb-6" data-bs-toggle="modal" data-bs-target="#send_final_email">Send Last
+                Information Email
+            </button>
             <!--begin::Card-->
             <div class="card">
                 <!--begin::Card header-->
@@ -264,6 +267,39 @@
                     <!--end::Table-->
                 </div>
                 <!--end::Card body-->
+                <div class="modal fade" tabindex="-1" id="send_final_email">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Send final confirmation mail</h3>
+
+                                <!--begin::Close-->
+                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+                                     data-bs-dismiss="modal" aria-label="Close">
+                                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span
+                                            class="path2"></span></i>
+                                </div>
+                                <!--end::Close-->
+                            </div>
+
+                            <div class="modal-body">
+                                <p class="text-center fs-5">
+                                    Are you sure you wish to send the confirmation email? please only do so one day before the barbecue and after consultation with the chair of the committee.
+                                </p>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <form action="{{ route('backoffice.bbq.email') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-info">Send Final Email</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--end::Card-->
         </div>

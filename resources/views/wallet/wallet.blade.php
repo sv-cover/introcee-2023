@@ -55,12 +55,12 @@
                     </div>
                     <div class="col-12 col-md-4 wallet-funds text-right">
                         <div class="row align-items-center">
-                            <div class="col-8">
+                            <div class="col-12 col-md-8 text-center text-md-end">
                                 <span>€ <b>{{ number_format($wallet->balance, 2, ',') }}</b></span>
                                 <a href="{{ route('topup', ['id' => $wallet->id])  }}" class="btn-topup">Top-Up
                                     Wallet</a>
                             </div>
-                            <div class="col-4 text-right">
+                            <div class="col-12 col-md-4 text-center text-md-end">
                                 <img class="qr-code"
                                      src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ $wallet->id }}"/>
                             </div>
@@ -74,16 +74,27 @@
                     <div class="white-box">
                         <h4>Purchases</h4>
                         <ul class="purchase-list">
-                            @if(count($wallet->purchases) == 0)
-                                You have not topped up your wallet yet.
+                            @if(count($wallet->purchases) == 0 && $wallet->auctions()->count() == 0)
+                                You have not made any purchases yet.
                             @endif
+                            @foreach($wallet->auctions as $auction)
+                                <li class="row">
+                                    <div class="col-md-3 col-4 amount">
+                                        <span>€ <b>{{ $auction->price }}</b></span>
+                                    </div>
+                                    <div class="col-md-9 col-8 details">
+                                        <b>Auction:</b> {{ $auction->product }}
+                                        <span>{{ $auction->created_at }}</span>
+                                    </div>
+                                </li>
+                            @endforeach
                             @foreach($wallet->purchases as $purchase)
                                 <li class="row">
                                     <div class="col-md-3 col-4 amount">
                                         <span>€ <b>{{ $purchase->total }}</b></span>
                                     </div>
                                     <div class="col-md-9 col-8 details">
-                                        {{ $purchase->quantity }}x {{ $purchase->product()->get()[0]->name }}
+                                        {{ $purchase->quantity }}x {{ $purchase->product()->first()->name }}
                                         ({{ $purchase->price_per_unit }})
                                         <span>{{ $purchase->created_at }}</span>
                                     </div>

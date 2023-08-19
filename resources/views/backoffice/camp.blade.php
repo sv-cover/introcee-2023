@@ -38,10 +38,9 @@
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <form action="{{ route('backoffice.camp.email') }}" method="post">
-                @csrf
-                <button class="btn btn-info mb-6">Send Last Information Email</button>
-            </form>
+            <button class="btn btn-info mb-6" data-bs-toggle="modal" data-bs-target="#send_final_email">Send Last
+                Information Email
+            </button>
             <!--begin::Card-->
             <div class="card">
                 <!--begin::Card header-->
@@ -52,7 +51,8 @@
                         <div class="d-flex align-items-center position-relative my-1">
                             <i class="ki-outline ki-magnifier fs-3 position-absolute ms-5"></i>
                             <input type="text" data-kt-customer-table-filter="search"
-                                   class="form-control form-control-solid w-250px ps-12" placeholder="Search Participants">
+                                   class="form-control form-control-solid w-250px ps-12"
+                                   placeholder="Search Participants">
                         </div>
                         <!--end::Search-->
                     </div>
@@ -90,7 +90,8 @@
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                                <input class="form-check-input" type="radio" name="participant_confirmed"
+                                                <input class="form-check-input" type="radio"
+                                                       name="participant_confirmed"
                                                        value="all" checked="checked">
                                                 <span class="form-check-label text-gray-600">All</span>
                                             </label>
@@ -98,7 +99,8 @@
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                                <input class="form-check-input" type="radio" name="participant_confirmed"
+                                                <input class="form-check-input" type="radio"
+                                                       name="participant_confirmed"
                                                        value="yes">
                                                 <span class="form-check-label text-gray-600">Yes</span>
                                             </label>
@@ -106,7 +108,8 @@
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" name="participant_confirmed"
+                                                <input class="form-check-input" type="radio"
+                                                       name="participant_confirmed"
                                                        value="no">
                                                 <span class="form-check-label text-gray-600">No</span>
                                             </label>
@@ -125,7 +128,8 @@
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                                <input class="form-check-input" type="radio" name="participant_checkedin"
+                                                <input class="form-check-input" type="radio"
+                                                       name="participant_checkedin"
                                                        value="all" checked="checked">
                                                 <span class="form-check-label text-gray-600">All</span>
                                             </label>
@@ -133,7 +137,8 @@
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                                <input class="form-check-input" type="radio" name="participant_checkedin"
+                                                <input class="form-check-input" type="radio"
+                                                       name="participant_checkedin"
                                                        value="checked-in">
                                                 <span class="form-check-label text-gray-600">Yes</span>
                                             </label>
@@ -141,7 +146,8 @@
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" name="participant_checkedin"
+                                                <input class="form-check-input" type="radio"
+                                                       name="participant_checkedin"
                                                        value="checked-out">
                                                 <span class="form-check-label text-gray-600">No</span>
                                             </label>
@@ -222,21 +228,21 @@
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending"
-                                        >Email
+                                    >Email
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1" aria-label="Company: activate to sort column ascending"
-                                        >Phone Number
+                                    >Phone Number
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1"
                                         aria-label="Payment Method: activate to sort column ascending"
-                                        >Type
+                                    >Type
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1"
                                         aria-label="Payment Method: activate to sort column ascending"
-                                        >Confirmed
+                                    >Confirmed
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1"
@@ -245,7 +251,7 @@
                                     <th class="sorting" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1"
                                         aria-label="Created Date: activate to sort column ascending"
-                                        >Created Date
+                                    >Created Date
                                     </th>
                                     <th class="sorting text-right" tabindex="0" aria-controls="kt_customers_table"
                                         rowspan="1" colspan="1"
@@ -313,6 +319,40 @@
                     <!--end::Table-->
                 </div>
                 <!--end::Card body-->
+
+                <div class="modal fade" tabindex="-1" id="send_final_email">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Send final confirmation mail</h3>
+
+                                <!--begin::Close-->
+                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+                                     data-bs-dismiss="modal" aria-label="Close">
+                                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span
+                                            class="path2"></span></i>
+                                </div>
+                                <!--end::Close-->
+                            </div>
+
+                            <div class="modal-body">
+                                <p class="text-center fs-5">
+                                    Are you sure you wish to send the confirmation email? please only do so one day before the camp and after consultation with the chair of the committee.
+                                </p>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <form action="{{ route('backoffice.camp.email') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-info">Send Final Email</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--end::Card-->
         </div>

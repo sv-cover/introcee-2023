@@ -5,6 +5,7 @@ namespace App\Models;
 use DateTime;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -41,5 +42,10 @@ class ParticipantCamp extends Model
     public function getWallet(): ?Wallet
     {
         return Wallet::where('email', $this->email_address)->first();
+    }
+
+    public function bus(): BelongsTo
+    {
+        return $this->belongsTo(Bus::class, 'bus');
     }
 }

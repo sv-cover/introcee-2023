@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendMail;
+use App\Models\Bus;
 use Illuminate\Support\Facades\Mail;
 use App\Models\ParticipantCamp;
 use Illuminate\Http\Request;
@@ -90,17 +91,36 @@ class CampRegistrationController extends Controller
         ])->count();
     }
 
+    public static function get_min_bus(){
+        $min = 99999;
+        $minBus = null;
+        foreach(Bus::all() as $bus){
+            if(!$bus->is_full() && $bus->get_count() < $min){
+                $minBus = $bus;
+            }
+        }
+        return $minBus;
+    }
+
     public static function send_last_email(){
         $participants = ParticipantCamp::all();
         forEach($participants as $participant)
             if($participant->confirmed && !$participant->email_sent){
+                if(!$participant->bus){
+                    $minBus = self::get_min_bus();
+                    if($minBus){
+                        $participant->bus = $minBus->id;
+                        $participant->save();
+                    }
+                }
                 $mail_body = 'Dear ' . $participant->first_name . ',<br><br>
                 As we are coming closer to the camp, here is some important information: <br><br>
                 On <b>Friday, September 10</b>, the buses will depart at 15:00. Please gather at 14:50 at the designated
                 spot (<a href="https://goo.gl/maps/GAXAjBiL2BKNhmTg9">click here</a>). While boarding the bus, please show
                 this QR code to the IntroCee representatives checking you in:<br><br>
                 <img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='.$participant->id.'" style="margin:auto;display:block;" />
-                <br><br>Please keep this email ready in the bus as well, as you will receive your bracelet and barcode during the trip.<br><br>
+                <br><br>Please only board your assigned bus number. Your bus number is:<br><br>
+                <span style="font-weight: bold;font-size:30px;text-align: center;">Bus '.$participant->bus()->first()->bus_number.'</span><br><br>Please keep this email ready in the bus as well, as you will receive your bracelet and barcode during the trip.<br><br>
                 <b>Here are some important items that you should not forget home:</b>
                 <ul>
                     <li>Clothing:

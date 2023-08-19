@@ -25,4 +25,9 @@ class ParticipantBarbecue extends Model
      */
     protected $table = 'participants_barbecue';
 
+
+    public function getWallet(): ?Wallet
+    {
+        return Wallet::where('email', $this->email_address)->first();
+    }
 }
