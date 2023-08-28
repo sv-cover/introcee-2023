@@ -81,6 +81,18 @@ class WalletController extends Controller
         return redirect(route('backoffice.camp.participant', ['id' => $participant->id]));
     }
 
+    public static function unlink_barcode(){
+        $participant = ParticipantCamp::where('id', request()->participant)->first();
+        if($participant) {
+            $wallet = Wallet::where('email', $participant->email_address)->first();
+            if ($wallet) {
+                $wallet->barcode = null;
+                $wallet->save();
+            }
+        }
+        return redirect(route('backoffice.camp.participant', ['id' => $participant->id]));
+    }
+
     public static function negative_balance_topup(){
 
     }

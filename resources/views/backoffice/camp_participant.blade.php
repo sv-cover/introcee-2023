@@ -55,8 +55,15 @@
                         <div class="card mb-5 mb-xl-8">
                             <!--begin::Card body-->
                             <div class="card-body pt-10">
+                                @if($participant->bus)
+                                    <span class="mb-5" style="display: block;">
+                                    Assigned bus:
+                                    <b>Bus {{ $participant->bus()->first()->bus_number }}</b>
+                                </span>
+                                @endif
+
                                 <span class="mb-5" style="display: block;">
-                                    <b>Current status:</b>
+                                    Current status:
                                     @if($participant->checked_in)
                                         <span class="badge badge-success">Checked In</span>
                                     @else
@@ -93,13 +100,14 @@
                                 @endif
                                 <!--end::Details content-->
                                 <span class="mt-6" style="display: block;">
-                                    <b>Card:</b>
+                                    Card:
                                     @if($participant->getWallet())
                                         @if($participant->getWallet()->barcode)
-                                            <span class="badge badge-light-dark">{{$participant->getWallet()->barcode}}</span>
+                                            <span
+                                                class="badge badge-light-dark">{{$participant->getWallet()->barcode}}</span>
                                         @else
                                             <span class="badge badge-danger">No card linked</span>
-                                       @endif
+                                        @endif
                                     @else
                                         <span class="badge badge-warning">No wallet generated</span>
                                     @endif
@@ -113,6 +121,16 @@
                                         data-bs-target="#kt_modal_link_barcode"
                                     >
                                         Link Barcode
+                                    </a>
+                                @else
+                                    <a
+                                        class="btn mt-5 btn-block btn-light-danger"
+                                        type="submit"
+                                        style="width: 100%;"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#kt_modal_unlink_barcode"
+                                    >
+                                        Unlink Barcode
                                     </a>
                                 @endif
                             </div>
@@ -701,7 +719,8 @@
 
                                 <!--begin::Actions-->
                                 <div class="text-center mt-15">
-                                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_payment" id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
+                                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_add_payment"
+                                            id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
                                         Cancel
                                     </button>
                                     <button type="submit" name="confirm" value="1" id="kt_modal_add_payment_submit"
@@ -749,8 +768,27 @@
                                   action="{{ route('backoffice.pos.wallets.linkbarcode') }}" method="post">
                                 @csrf
 
+                                <?php
+                                $today = new DateTime();
+                                $bday = new DateTime($participant->date_of_birth);
+                                $ageInterval = $today->diff($bday);
+                                $age = $ageInterval->y + ($ageInterval->m / 12) + ($ageInterval->d / 365.25);
+                                ?>
+
+                                <div class="alert alert-info align-items-center p-5 mb-10">
+                                    The participant should receive a(n)
+                                    @if($age>=18)
+                                        <span class="badge badge-success">18+</span>
+                                    @else
+                                        <span class="badge badge-danger">NIX-18</span>
+                                    @endif
+                                    bracelet. Please check the ID for the following date of birth:
+                                    <span class="badge badge-secondary">{{ $participant->date_of_birth }}</span>.
+                                </div>
+
                                 <label for="barcode">Barcode</label>
-                                <input name="barcode" class="mb-6 form-control form-control-solid" id="barcode" type="text" placeholder="Barcode here..."/>
+                                <input name="barcode" class="mb-6 form-control form-control-solid" id="barcode"
+                                       type="text" placeholder="Barcode here..."/>
                                 <input type="hidden" name="participant" value="{{$participant->id}}">
 
                                 <script src="{{ asset('backoffice/js/html5-qrcode.min.js') }}"></script>
@@ -771,14 +809,14 @@
                                     }
 
                                     var html5QrcodeScanner = new Html5QrcodeScanner(
-                                        "qr-reader", { fps: 10, qrbox: 250 });
+                                        "qr-reader", {fps: 10, qrbox: 250});
                                     html5QrcodeScanner.render(onScanSuccess);
 
                                     document.getElementById("qr-reader").style.width = '100%';
                                 </script>
 
                                 <style>
-                                    #html5-qrcode-button-camera-stop, #html5-qrcode-button-camera-start{
+                                    #html5-qrcode-button-camera-stop, #html5-qrcode-button-camera-start {
                                         background: #C8102E;
                                         color: white;
                                         border: 0;
@@ -786,19 +824,72 @@
                                         padding: 10px 25px;
                                         font-weight: bold;
                                     }
-                                    #html5-qrcode-anchor-scan-type-change{
+
+                                    #html5-qrcode-anchor-scan-type-change {
                                         display: none;
                                     }
                                 </style>
 
                                 <!--begin::Actions-->
                                 <div class="text-center mt-15">
-                                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_link_barcode" id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
+                                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_link_barcode"
+                                            id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
                                         Cancel
                                     </button>
                                     <button type="submit" name="confirm" value="1" id="kt_modal_add_payment_submit"
                                             class="btn btn-primary">
                                         <span class="indicator-label">Link barcode</span>
+                                    </button>
+                                </div>
+                                <!--end::Actions-->
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Modal body-->
+                    </div>
+                    <!--end::Modal content-->
+                </div>
+                <!--end::Modal dialog-->
+            </div>
+            <div class="modal fade" id="kt_modal_unlink_barcode" tabindex="-1" style="display: none;" aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog mw-650px">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Modal header-->
+                        <div class="modal-header">
+                            <!--begin::Modal title-->
+                            <h2 class="fw-bold">Link barcode for {{ $participant->first_name }}</h2>
+                            <!--end::Modal title-->
+                            <!--begin::Close-->
+                            <div id="kt_modal_add_payment_close" class="btn btn-icon btn-sm btn-active-icon-primary"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#kt_modal_link_barcode"
+                            >
+                                <i class="ki-outline ki-cross fs-1"></i>
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 mt-2">
+                            <!--begin::Form-->
+                            <form id="kt_modal_add_payment_form" class="form fv-plugins-bootstrap5 fv-plugins-framework text-center fs-4"
+                                  action="{{ route('backoffice.pos.wallets.unlinkbarcode') }}" method="post">
+                                @csrf
+
+                                Are you sure you wish to unlink the barcode for {{ $participant->first_name }}?
+                                <input type="hidden" name="participant" value="{{$participant->id}}">
+
+                                <!--begin::Actions-->
+                                <div class="text-center mt-15">
+                                    <button data-bs-toggle="modal" data-bs-target="#kt_modal_unlink_barcode"
+                                            id="kt_modal_add_payment_cancel" class="btn btn-light me-3">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" name="confirm" value="1" id="kt_modal_add_payment_submit"
+                                            class="btn btn-danger">
+                                        <span class="indicator-label">Unlink barcode</span>
                                     </button>
                                 </div>
                                 <!--end::Actions-->
