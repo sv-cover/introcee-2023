@@ -63,7 +63,7 @@
                             </div>
                             <div class="text">
                                 <p>Place: In front of the Bernoulliborg<br />
-                                    Time: put time here<br />
+                                    Time: 17:00<br />
                                     Sign up fee: 3,5<br />
                                     Note: You do not even have to be a Cover member!<br />
                                     Note 2: Are you ready for a fun evening 😉?<br />
