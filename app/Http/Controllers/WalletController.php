@@ -76,7 +76,7 @@ class WalletController extends Controller
         if($participant) {
             $wallet = Wallet::where('email', $participant->email_address)->first();
             if ($wallet) {
-                $wallet->barcode = request()->barcode;
+                $wallet->barcode = 'COVER'.request()->barcode;
                 $wallet->save();
             }
         }

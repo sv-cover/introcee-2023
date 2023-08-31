@@ -787,48 +787,12 @@
                                 </div>
 
                                 <label for="barcode">Barcode</label>
-                                <input name="barcode" class="mb-6 form-control form-control-solid" id="barcode"
-                                       type="text" placeholder="Barcode here..."/>
                                 <input type="hidden" name="participant" value="{{$participant->id}}">
 
-                                <script src="{{ asset('backoffice/js/html5-qrcode.min.js') }}"></script>
-
-                                <div id="qr-reader" style="width:500px"></div>
-                                <div id="qr-reader-results"></div>
-
-                                <script>
-                                    var resultContainer = document.getElementById('qr-reader-results');
-                                    var lastResult, countResults = 0;
-
-                                    function onScanSuccess(decodedText, decodedResult) {
-                                        if (decodedText !== lastResult) {
-                                            ++countResults;
-                                            lastResult = decodedText;
-                                            document.getElementById('barcode').value = decodedText;
-                                        }
-                                    }
-
-                                    var html5QrcodeScanner = new Html5QrcodeScanner(
-                                        "qr-reader", {fps: 10, qrbox: 250});
-                                    html5QrcodeScanner.render(onScanSuccess);
-
-                                    document.getElementById("qr-reader").style.width = '100%';
-                                </script>
-
-                                <style>
-                                    #html5-qrcode-button-camera-stop, #html5-qrcode-button-camera-start {
-                                        background: #C8102E;
-                                        color: white;
-                                        border: 0;
-                                        border-radius: 5px;
-                                        padding: 10px 25px;
-                                        font-weight: bold;
-                                    }
-
-                                    #html5-qrcode-anchor-scan-type-change {
-                                        display: none;
-                                    }
-                                </style>
+                                <div class="input-group input-group-solid mb-5">
+                                    <span class="input-group-text" id="basic-addon1">COVER</span>
+                                    <input type="number" class="form-control" placeholder="Ex: 00179" name="barcode">
+                                </div>
 
                                 <!--begin::Actions-->
                                 <div class="text-center mt-15">
@@ -859,7 +823,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bold">Link barcode for {{ $participant->first_name }}</h2>
+                            <h2 class="fw-bold">Unlink barcode for {{ $participant->first_name }}</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div id="kt_modal_add_payment_close" class="btn btn-icon btn-sm btn-active-icon-primary"
