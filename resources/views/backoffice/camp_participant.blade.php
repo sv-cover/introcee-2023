@@ -791,7 +791,7 @@
 
                                 <div class="input-group input-group-solid mb-5">
                                     <span class="input-group-text" id="basic-addon1">COVER</span>
-                                    <input type="number" class="form-control" placeholder="Ex: 00179" name="barcode">
+                                    <input pattern="[0-9]*" type="text" class="form-control" placeholder="Ex: 00179" name="barcode">
                                 </div>
 
                                 <!--begin::Actions-->
