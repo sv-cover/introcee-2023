@@ -49,6 +49,8 @@ Route::post('/barbecue/senior', [BarbecueController::class, 'sign_up_senior'])->
 Route::get('/wallet', [WalletController::class, 'view'])->name('wallet');
 Route::get('/wallet/topup', [WalletController::class, 'topUpView'])->name('topup');
 Route::post('/wallet/topup', [WalletController::class, 'toPayment'])->name('topup.payment');
+Route::get('/wallet/find', [WalletController::class, 'find_wallet_view'])->name('wallet.findwallet');
+Route::post('/wallet/find', [WalletController::class, 'find_wallet_post'])->name('wallet.find');
 
 Route::get('/email', function() {
     return view('emails.standard');
