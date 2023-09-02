@@ -48,7 +48,7 @@
         <div id="kt_app_content_container" class="app-container container-xxl">
             <div class="row g-5 g-xl-10">
                 <div class="card">
-                    <div class="card-body pt-0">
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped gy-5 gs-7">
                                 <thead>

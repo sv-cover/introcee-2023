@@ -116,7 +116,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Chat-->
                         <div class="app-navbar-item ms-1 ms-lg-3">
                             <!--begin::Menu wrapper-->
-                            <a href="{{ route('backoffice.scanner') }}">
+                            <a href="https://scanner.introcee.svcover.nl/">
                                 <div
                                     class="btn btn-icon btn-color-gray-500 btn-active-color-primary btn-custom shadow-xs bg-body"
                                     id="kt_drawer_chat_toggle">
@@ -305,7 +305,7 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin::Col-->
                                 <div class="col mb-4">
                                     <!--begin::Link-->
-                                    <a href="{{ route('backoffice.scanner') }}"
+                                    <a href="https://scanner.introcee.svcover.nl/"
                                        class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary {{ Route::is('backoffice.camp') && 'active' }} btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
                                        data-kt-button="true">
                                         <!--begin::Icon-->
