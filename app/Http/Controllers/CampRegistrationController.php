@@ -121,6 +121,8 @@ class CampRegistrationController extends Controller
                 <img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='.$participant->id.'" style="margin:auto;display:block;" />
                 <br><br>Please only board your assigned bus number. Your bus number is:<br><br>
                 <span style="font-weight: bold;font-size:30px;text-align: center;">Bus '.$participant->bus()->first()->bus_number.'</span><br><br>Please keep this email ready in the bus as well, as you will receive your bracelet and barcode during the trip.<br><br>
+                <b>Bring a valid form of identification. Your ID will be checked on the bus to receive the participant bracelet.</b>
+                <br/><br/>
                 <b>Here are some important items that you should not forget home:</b>
                 <ul>
                     <li>Clothing:
@@ -131,7 +133,8 @@ class CampRegistrationController extends Controller
                             <li>Sun hat</li>
                             <li>Old t-shirt and bottoms (to get dirty)</li>
                             <li>Pyjamas</li>
-                            <li>Any kind of neon +  army/camo clothing or accesories</li>
+                            <li>Any kind of army/camo clothing or accesories</li>
+                            <li>Any kind of neon/white clothing (for a neon party)</li>
                             <li>Comfortable shoes</li>
                             <li>(Garbage) bag for dirty clothes</li>
                         </ul>

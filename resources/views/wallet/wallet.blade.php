@@ -88,7 +88,7 @@
                                     </div>
                                 </li>
                             @endforeach
-                            @foreach($wallet->purchases as $purchase)
+                            @foreach($wallet->purchases->reverse() as $purchase)
                                 <li class="row">
                                     <div class="col-md-3 col-4 amount">
                                         <span>€ <b>{{ $purchase->total }}</b></span>
