@@ -315,7 +315,7 @@
                                                     <tr>
                                                         <td><b>Card Type</b></td>
                                                         <td class="text-right">
-                                                            <img src="{{ asset('backoffice/media/svg/card-logos/'. $card->cardLabel .'.svg') }}" height="24" />
+                                                            <img src="{{ asset('backoffice/media/svg/card-logos/'. strtolower($card->cardLabel) .'.svg') }}" height="24" />
                                                         </td>
                                                     </tr>
                                                     <tr>
