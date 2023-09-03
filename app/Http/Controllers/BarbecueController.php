@@ -80,7 +80,7 @@ class BarbecueController extends Controller {
                 As the barbecue is coming close, here is some information about paying for drinks at the bar. The bar staff
                 will ask you to show them your QR code. Here is your QR:
                 <br><br>
-                <img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='.$wallet->id.'" style="margin:auto;display:block;" />
+                <img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl='.$wallet->id.'" style="margin:auto;display:block;" />
                 <br><br>Please take a screenshot of this QR code or save it to your phone to make things smoother. Alternatively, you can
                 add your wallet website page to the home screen of your phone for easy access of the QR, purchase history and top-up.
                 <br><br>If you haven\'t done so already, please top up your account. Paying with card or cash will not be possible. After the
