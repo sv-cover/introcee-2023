@@ -68,7 +68,7 @@ class BarbecueController extends Controller {
 
     public static function isFull(){
         $participants = ParticipantBarbecue::where('confirmed' , true)->count();
-        return $participants >= 250;
+        return $participants >= 200;
     }
 
     public static function send_last_email(){
