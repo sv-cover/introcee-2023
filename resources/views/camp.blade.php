@@ -42,8 +42,7 @@
                                 </li>
                                 <li>A camp organised by students for students. The organisers are the Introduction Committee of Cover,
                                 the Study Association for AI & CS at the UG.</li>
-                                <li>Have a weekend full of games and student traditions which will make you discover
-                                the association, your programme, your cohort and student traditions.</li>
+                                <li>This weekend full of games, adventure, parties and fun will help you discover the association, your programme, your cohort and student traditions!</li>
                             </ul>
                             <div class="btn-box">
                                 <a href="{{ route('campregistration') }}" class="theme-btn btn-one">Sign Up</a>
