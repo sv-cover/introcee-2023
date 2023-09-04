@@ -29,7 +29,7 @@
                         <div class="content-box">
                             <div class="sec-title">
                                 <span class="sub-title">September 8-10, 2023</span>
-                                <h2>What is the IntroCamp?</h2>
+                                <h2>What is the Introduction Camp?</h2>
                             </div>
                             <div class="text">
                                 <div class="icon-box"><i class="flaticon-camping"></i></div>
@@ -37,11 +37,13 @@
                                     Intelligence and Computing Science at the University of Groningen.</p>
                             </div>
                             <ul class="list-style-one clearfix">
-                                <li>150 participants in total</li>
-                                <li>Get to know your fellow colleagues and create connections from your first university
+                                <li>Get to know your fellow students and make friends from your first university
                                     weekend.
                                 </li>
-                                <li>Have a weekend full of fun activities organised by us.</li>
+                                <li>A camp organised by students for students. The organisers are the Introduction Committee of Cover,
+                                the Study Association for AI & CS at the UG.</li>
+                                <li>Have a weekend full of games and student traditions which will make you discover
+                                the association, your programme, your cohort and student traditions.</li>
                             </ul>
                             <div class="btn-box">
                                 <a href="{{ route('campregistration') }}" class="theme-btn btn-one">Sign Up</a>
@@ -69,11 +71,18 @@
                     <div class="content_block_three">
                         <div class="content-box">
                             <div class="sec-title">
-                                <h2>Details</h2>
+                                <span class="sub-title">What will we do?</span>
+                                <h2>Schedule</h2>
                             </div>
                             <div class="text">
-                                <p>In order to guarantee the safety and good ambiance during the introductory weekend, the Study Association Cover is affiliated with the ACI (Advies Commissie Introductietijden). The ACI is an independent agency from the University of Groningen which advises us where needed. It is always possible to contact them with general questions regarding the introductory period through their website.</p>
-                                <h3 class="mt-4 mb-4">Price: €49,- / Higher Years: €59,- </h3>
+                                <p>
+                                    <b>Friday:</b> Travel, settle in the rooms, games, surprise activity, dinner party.
+                                    <br />
+                                    <b>Saturday:</b> Full day of games (P.S. all you're gonna need is some clothes you don’t mind getting dirty), lunch, committee games, surprise activity, dinner, surprise activity with a <b>military</b> theme, party.
+                                    <br />
+                                    <b>Sunday:</b> Breakfast, games, auction, travel back to Groningen.
+                                </p>
+                                <h3 class="mt-4 mb-4">Price: €49,- <small>for first-year students</small> </h3>
                                 <p>NOTE: The sign-ups will close at <b>23:59 on Wednesday, 7th September</b>.</p>
                             </div>
                             <div class="btn-box">
@@ -112,52 +121,6 @@
                        style="background-image: url({{ asset('images/shape/shape-7.png') }});"><i
                             class="fas fa-play"></i></a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="about-style-two">
-        <div class="auto-container">
-            <div class="row">
-                <div class="col-12 col-lg-6">
-                    <div class="content_block_three">
-                        <div class="content-box">
-                            <div class="sec-title">
-                                <span class="sub-title">Where are we going?</span>
-                                <h2>Location</h2>
-                            </div>
-                            <div class="text">
-                                <p>
-                                    This year's camp will be held at the same location as the previous IntroCamp. The amazing location that we will be visiting is the Pageborg in Stadskanaal, but don't worry, we will pick you up at the Zernike Campus by bus and also drop you off again at Zernike or the train station.
-                                    <br /><br />
-                                    The location has everything, just bring a good vibe and the other things on the packing list :)
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="content_block_three">
-                        <div class="content-box">
-                            <div class="sec-title">
-                                <span class="sub-title">What will we do?</span>
-                                <h2>Schedule</h2>
-                            </div>
-                            <div class="text">
-                                <p>
-                                    <b>Friday:</b> Travel, settle in the rooms, games, surprise activity, dinner party.
-                                    <br />
-                                    <b>Saturday:</b> Full day of games (P.S. all you're gonna need is some clothes you don’t mind getting dirty), lunch, committee games, surprise activity, dinner, surprise activity with a <b>military</b> theme, party.
-                                    <br />
-                                    <b>Sunday:</b> Breakfast, games, auction, travel back to Groningen.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="btn-box text-center">
-                <a href="{{ route('campregistration') }}" class="theme-btn btn-one">Sign Up</a>
             </div>
         </div>
     </section>
