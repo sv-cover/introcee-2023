@@ -168,12 +168,15 @@ class PaymentController extends Controller
                 Mail::to($participant->email_address)->send(new SendMail($mailData, $subject));
 
             } else {
-                $topup->final_amount = $payment->getSettlementAmount();
-                $topup->confirmed = true;
                 $wallet = $topup->wallet()->first();
-                $wallet->balance += $topup->amount;
-                $wallet->save();
-                $topup->save();
+                if(!$topup->added) {
+                    $topup->final_amount = $payment->getSettlementAmount();
+                    $topup->confirmed = true;
+                    $topup->added = true;
+                    $topup->save();
+                    $wallet->balance += $topup->amount;
+                    $wallet->save();
+                }
             }
         }
 
