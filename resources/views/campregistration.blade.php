@@ -34,11 +34,11 @@
                            href="{{ url('/camp/signup?type=senior') }}">I am a senior student</a>
                     </div>
                     @if($type != 'senior')
-                        @if(\App\Http\Controllers\CampRegistrationController::countFirstYears() >= 125)
+                        @if(\App\Models\ParticipantCamp::where('confirmed', true)->count() >= 125)
                             <div class="activities-section">
                                 <div class="lower-box justify-content-center">
                                     <div class="sec-title light mt-0 ">
-                                        <span class="sub-title">Unfortunately, there are no more spots left for the camp!</span>
+                                        <span class="sub-tiwtle">Unfortunately, there are no more spots left for the camp!</span>
                                     </div>
                                 </div>
                             </div>
