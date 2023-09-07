@@ -156,6 +156,7 @@ class CampRegistrationController extends Controller
                     </li>
                     <li>Others:
                         <ul>
+                            <li>Bedsheets</li>
                             <li>Wallet / Money (in case of emergencies)</li>
                             <li>Water bottle</li>
                             <li>ID</li>
