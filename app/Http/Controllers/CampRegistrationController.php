@@ -115,7 +115,7 @@ class CampRegistrationController extends Controller
                 }
                 $mail_body = 'Dear ' . $participant->first_name . ',<br><br>
                 As we are coming closer to the camp, here is some important information: <br><br>
-                On <b>Friday, September 10</b>, the buses will depart at 15:00. Please gather at 14:50 at the designated
+                On <b>Friday, September 8</b>, the buses will depart at 15:00. Please gather at 14:50 at the designated
                 spot (<a href="https://goo.gl/maps/GAXAjBiL2BKNhmTg9">click here</a>). While boarding the bus, please show
                 this QR code to the IntroCee representatives checking you in:<br><br>
                 <img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='.$participant->id.'" style="margin:auto;display:block;" />
@@ -133,10 +133,14 @@ class CampRegistrationController extends Controller
                             <li>Sun hat</li>
                             <li>Old t-shirt and bottoms (to get dirty)</li>
                             <li>Pyjamas</li>
-                            <li>Any kind of army/camo clothing or accesories</li>
-                            <li>Any kind of neon/white clothing (for a neon party)</li>
                             <li>Comfortable shoes</li>
                             <li>(Garbage) bag for dirty clothes</li>
+                            <li>Optional:
+                            <ul>
+                            <li>Any kind of army/camo clothing or accesories</li>
+                            <li>Any kind of neon/white clothing (for a neon party)</li>
+                            </ul>
+                            </li>
                         </ul>
                     </li>
                     <li>Hygiene:
