@@ -82,7 +82,7 @@
                                     <b>Sunday:</b> Breakfast, games, auction, travel back to Groningen.
                                 </p>
                                 <h3 class="mt-4 mb-4">Price: €49,- <small>for first-year students</small> </h3>
-                                <p>NOTE: The sign-ups will close at <b>23:59 on Wednesday, 7th September</b>.</p>
+                                <p>NOTE: The sign-ups will close at <b>23:59 on Thursday, 7th of September</b>.</p>
                             </div>
                             <div class="btn-box">
                                 <a href="{{ route('campregistration') }}" class="theme-btn btn-one">Sign Up</a>
