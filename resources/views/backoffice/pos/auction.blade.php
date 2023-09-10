@@ -131,7 +131,7 @@
                         <div class="input-group mb-5">
                             <span class="input-group-text" id="basic-addon1">€</span>
                             <input name="price" type="number" class="form-control" placeholder="Price..." min="0"
-                                   step="0.1">
+                                   step="0.01">
                         </div>
                         <label for="barcode" class="mb-2">Barcode</label>
                         <input name="barcode" class="mb-6 form-control" id="barcode" type="text"
