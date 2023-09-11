@@ -156,7 +156,7 @@ class WalletController extends Controller
                     <br><br>Kind regards,<br>The Cover Introduction Committee';
                     $button_text = 'Go to my wallet';
                     $button_link = route('wallet', ['id' => $wallet->id]);
-                    $subject = 'Refund Introduction Week Wallet Balance';
+                    $subject = '[UPDATE] Refund Introduction Week Wallet Balance';
                     $title = 'Wallet Refund';
                     $mailData = [
                         'title' => $title,
@@ -182,7 +182,7 @@ class WalletController extends Controller
                     <br><br>Yours truly,<br>The Cover Introduction Committee';
                     $button_text = 'Go to my wallet';
                     $button_link = route('wallet', ['id' => $wallet->id]);
-                    $subject = 'Introduction Week Wallet Debts';
+                    $subject = '[UPDATE] Introduction Week Wallet Debts';
                     $title = 'Wallet Debts';
                     $mailData = [
                         'title' => $title,
