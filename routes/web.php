@@ -52,6 +52,8 @@ Route::post('/wallet/topup', [WalletController::class, 'toPayment'])->name('topu
 Route::get('/wallet/find', [WalletController::class, 'find_wallet_view'])->name('wallet.findwallet');
 Route::post('/wallet/find', [WalletController::class, 'find_wallet_post'])->name('wallet.find');
 
+Route::post('/wallet/bankaccount', [WalletController::class, 'update_wallet_bank_account'])->name('wallet.bankaccount');
+
 Route::get('/email', function() {
     return view('emails.standard');
 })->name('email');
@@ -75,6 +77,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'can.access.backoffice'], fun
     Route::post('/pos/products', [BackofficeController::class, 'product_delete'])->name('backoffice.pos.products.delete');
     Route::post('/pos/wallets/linkbarcode', [WalletController::class, 'link_barcode'])->name('backoffice.pos.wallets.linkbarcode');
     Route::post('/pos/wallets/unlinkbarcode', [WalletController::class, 'unlink_barcode'])->name('backoffice.pos.wallets.unlinkbarcode');
+    Route::post('/pos/wallets/email', [WalletController::class, 'send_balance_email'])->name('backoffice.pos.wallets.email');
     Route::get('/pos/auction', function(){ return view('backoffice.pos.auction'); })->name('backoffice.pos.auction');
     Route::post('/pos/auction', [BackofficeController::class, 'submit_auction'])->name('backoffice.pos.submitauction');
     Route::get('/pos/wallets', function() {return view('backoffice.pos.wallets');})->name('backoffice.pos.wallets');

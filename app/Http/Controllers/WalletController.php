@@ -132,4 +132,70 @@ class WalletController extends Controller
             'info' => 'We could not find a wallet with the email address you provided. Please try again or reach out to the introduction committee.'
         ]);
     }
+
+    public static function update_wallet_bank_account(){
+        $wallet = Wallet::where('id', request()->wallet)->first();
+        if($wallet){
+            $wallet->iban = request()->iban;
+            $wallet->bic = request()->bic;
+            $wallet->account_holder = request()->account_holder;
+            $wallet->save();
+            return redirect(route('wallet', ['id' => $wallet->id]));
+        }
+    }
+
+    public static function send_balance_email(){
+        $wallets = Wallet::all();
+        forEach($wallets as $wallet){
+            if(!$wallet->email_sent){
+                if($wallet->balance > 0){
+                    $mail_body = 'Dear ' . $wallet->first_name . ',<br><br>
+                    You have a positive balance of <b>€ '.$wallet->balance.'</b> on your wallet. In order to get this amount back, please
+                    fill in your bank account details on your wallet page. You can find your wallet page by clicking the button below. We will notify you
+                    when the funds have been refunded. Don\'t hesitate to email us any questions you might have. P.S. Please fill in a Euro bank account!
+                    <br><br>Kind regards,<br>The Cover Introduction Committee';
+                    $button_text = 'Go to my wallet';
+                    $button_link = route('wallet', ['id' => $wallet->id]);
+                    $subject = 'Refund Introduction Week Wallet Balance';
+                    $title = 'Wallet Refund';
+                    $mailData = [
+                        'title' => $title,
+                        'body' => $mail_body,
+                        'buttonlink' => $button_link,
+                        'buttontext' => $button_text
+                    ];
+                    Mail::to($wallet->email)->send(new SendMail($mailData, $subject));
+                    $wallet->email_sent = true;
+                    $wallet->save();
+                } else if ($wallet->balance < 0){
+                    $mail_body = 'Dear ' . $wallet->first_name . ',<br><br>
+                    You have a negative balance of <b>€ '.$wallet->balance.'</b> on your wallet. In order to pay this amount, please
+                    transfer it to the following bank account:<br>
+                    IBAN: NL54 RABO 0103 7969 40<br>
+                    BIC: RABONL2U<br>
+                    Account holder: Cover<br>
+                    Please include your name in the description of the
+                    transfer and make sure to notify us via email. Don\'t hesitate to also email us any questions you might have.
+                    <br><br>
+                    If you do not have a euro account or cannot/do not want to transfer the amount, you can visit your
+                    wallet page on the website and use the "Pay negative balance" button to pay the amount using iDeal or another method.
+                    <br><br>Yours truly,<br>The Cover Introduction Committee';
+                    $button_text = 'Go to my wallet';
+                    $button_link = route('wallet', ['id' => $wallet->id]);
+                    $subject = 'Introduction Week Wallet Debts';
+                    $title = 'Wallet Debts';
+                    $mailData = [
+                        'title' => $title,
+                        'body' => $mail_body,
+                        'buttonlink' => $button_link,
+                        'buttontext' => $button_text
+                    ];
+                    Mail::to($wallet->email)->send(new SendMail($mailData, $subject));
+                    $wallet->email_sent = true;
+                    $wallet->save();
+                }
+            }
+        }
+        return redirect(route('backoffice.pos.wallets'));
+    }
 }
