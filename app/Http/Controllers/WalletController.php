@@ -140,6 +140,23 @@ class WalletController extends Controller
             $wallet->bic = request()->bic;
             $wallet->account_holder = request()->account_holder;
             $wallet->save();
+            $mail_body = 'Dear IntroCee,<br><br>This is a notification that <b>
+            '.$wallet->first_name.' '.$wallet->last_name.'</b> has filled in their bank account details for the reimbursement: <br><br>
+            <b>Account holder:</b> '.$wallet->account_holder.'<br>
+            <b>IBAN:</b> '.$wallet->iban.'<br>
+            <b>BIC:</b> '.$wallet->bic.'<br>
+            <b>Balance:</b> €'.$wallet->balance.'<br><br>Please let the treasurer know so that the money are reimbursed.<br><br>All the best,<br>The Website';
+            $button_text = 'Wallets List';
+            $button_link = route('backoffice.pos.wallets');
+            $title = 'Wallet Reimbursement Details';
+            $mailData = [
+                'title' => $title,
+                'body' => $mail_body,
+                'buttonlink' => $button_link,
+                'buttontext' => $button_text
+            ];
+            $subject = '[Notification] Wallet Bank Account Details Updated';
+            Mail::to('introcee@svcover.nl')->send(new SendMail($mailData, $subject));
             return redirect(route('wallet', ['id' => $wallet->id]));
         }
     }
