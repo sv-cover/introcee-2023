@@ -180,6 +180,7 @@ class WalletController extends Controller
             ];
             Mail::to($wallet->email)->send(new SendMail($mailData, $subject));
             $wallet->email_sent = true;
+            $wallet->save();
         }
     }
 
