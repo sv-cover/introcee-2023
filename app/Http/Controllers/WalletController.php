@@ -161,6 +161,25 @@ class WalletController extends Controller
         }
     }
 
+    public static function send_data_deletion_warning() {
+        $wallets = Wallet::all();
+        forEach($wallets as $wallet){
+            $mail_body = 'Dear ' . $wallet->first_name . ',<br><br>
+            We are writing to inform you that we will be deleting your wallet & participant data from our system in 30 days. If you would like to take a last look at your transactions, please do so soon. Due to the financial nature of these records, we are legally required to keep the Mollie payments information for 7 years. These are stored on Mollie itself. If you still have funds in your wallet or you must pay debts, please refer to the previously sent emails. Don\'t hesitate to email us if you have any questions! <br><br>Kind regards,<br>The Cover Introduction Committee';
+            $button_text = 'Go to my wallet';
+            $button_link = route('wallet', ['id' => $wallet->id]);
+            $subject = 'Cover IntroCee Data Deletion Warning';
+            $title = 'Data Deletion Warning';
+            $mailData = [
+                'title' => $title,
+                'body' => $mail_body,
+                'buttonlink' => $button_link,
+                'buttontext' => $button_text
+            ];
+            Mail::to($wallet->email)->send(new SendMail($mailData, $subject));
+        }
+    }
+
     public static function send_balance_email(){
         $wallets = Wallet::all();
         forEach($wallets as $wallet){

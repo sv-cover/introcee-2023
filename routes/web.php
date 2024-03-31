@@ -78,6 +78,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'can.access.backoffice'], fun
     Route::post('/pos/wallets/linkbarcode', [WalletController::class, 'link_barcode'])->name('backoffice.pos.wallets.linkbarcode');
     Route::post('/pos/wallets/unlinkbarcode', [WalletController::class, 'unlink_barcode'])->name('backoffice.pos.wallets.unlinkbarcode');
     Route::post('/pos/wallets/email', [WalletController::class, 'send_balance_email'])->name('backoffice.pos.wallets.email');
+    Route::post('/pos/wallets/deletionemail', [WalletController::class, 'send_data_deletion_warning'])->name('backoffice.pos.wallets.deletionemail');
     Route::get('/pos/auction', function(){ return view('backoffice.pos.auction'); })->name('backoffice.pos.auction');
     Route::post('/pos/auction', [BackofficeController::class, 'submit_auction'])->name('backoffice.pos.submitauction');
     Route::get('/pos/wallets', function() {return view('backoffice.pos.wallets');})->name('backoffice.pos.wallets');

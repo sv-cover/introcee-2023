@@ -52,6 +52,15 @@
                     </i>
                     Send balance emails
                 </button>
+                <button data-bs-toggle="modal" data-bs-target="#send_data_deletion_email" class="ms-2 btn btn-sm fw-bold btn-primary">
+                    <i class="ki-duotone ki-directbox-default fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                        <span class="path3"></span>
+                        <span class="path4"></span>
+                    </i>
+                    Send data deletion emails
+                </button>
                 <!--end::Primary button-->
             </div>
         </div>
@@ -130,6 +139,39 @@
                     <form action="{{ route('backoffice.pos.wallets.email') }}" method="post">
                         @csrf
                         <button type="submit" class="btn btn-info">Send Balance Email</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="send_data_deletion_email">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Send data deletion emails</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+                         data-bs-dismiss="modal" aria-label="Close">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span
+                                class="path2"></span></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <p class="text-center fs-5">
+                        Are you sure you wish to send the data deletion email?
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal" data-bs-target="#send_balance_email">
+                        Cancel
+                    </button>
+                    <form action="{{ route('backoffice.pos.wallets.deletionemail') }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-info">Send Data Deletion Email</button>
                     </form>
                 </div>
             </div>
